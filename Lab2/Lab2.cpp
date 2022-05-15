@@ -12,12 +12,20 @@ namespace lab2
 		const size_t DEC_COLLUM_LENTH = 11;
 		const size_t HEX_COLLUM_LENTH = 9;
 
+		bool bPreEof = false;
 		bool bIsFirst = true;
 
 		while (true)
 		{
 			int num = 0;
 			in >> num;
+
+			if (bPreEof && in.eof())
+			{
+				in.clear();
+				break;
+			}
+			bPreEof = in.eof();
 
 			if (in.fail())
 			{
@@ -42,12 +50,6 @@ namespace lab2
 			out << setw(OCT_COLLUM_LENTH) << right << oct << num;
 			out << setw(DEC_COLLUM_LENTH) << right << dec << num;
 			out << setw(HEX_COLLUM_LENTH) << right << uppercase << hex << num << endl;
-
-			if (in.eof())
-			{
-				in.clear();
-				break;
-			}
 		}
 	}
 
@@ -56,6 +58,8 @@ namespace lab2
 		const size_t COLLUM_LENTH_1 = 5;
 		const size_t COLLUM_LENTH_2 = 15;
 
+		bool bPreEof = false;
+
 		bool bIsFirst = true;
 		float max = 0.f;
 
@@ -63,6 +67,13 @@ namespace lab2
 		{
 			float num = 0.f;
 			in >> num;
+
+			if (bPreEof && in.eof())
+			{
+				in.clear();
+				break;
+			}
+			bPreEof = in.eof();
 
 			if (in.fail())
 			{
@@ -80,12 +91,6 @@ namespace lab2
 			max = std::max(max, num);
 
 			out << setw(COLLUM_LENTH_1) << " " << setw(COLLUM_LENTH_2) << internal << showpos << fixed << showpoint << setprecision(3) << num << endl;
-
-			if (in.eof())
-			{
-				in.clear();
-				break;
-			}
 		}
 
 		out << setw(COLLUM_LENTH_1) << left << "max:" << setw(COLLUM_LENTH_2) << internal << showpos << fixed << showpoint << setprecision(3) << max << endl;
