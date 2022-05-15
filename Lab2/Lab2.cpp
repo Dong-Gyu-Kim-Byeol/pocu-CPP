@@ -19,12 +19,6 @@ namespace lab2
 			int num = 0;
 			in >> num;
 
-			if (in.eof())
-			{
-				in.clear();
-				break;
-			}
-
 			if (in.fail())
 			{
 				in.clear();
@@ -48,6 +42,12 @@ namespace lab2
 			out << setw(OCT_COLLUM_LENTH) << right << oct << num;
 			out << setw(DEC_COLLUM_LENTH) << right << dec << num;
 			out << setw(HEX_COLLUM_LENTH) << right << uppercase << hex << num << endl;
+
+			if (in.eof())
+			{
+				in.clear();
+				break;
+			}
 		}
 	}
 
@@ -63,12 +63,6 @@ namespace lab2
 		{
 			float num = 0.f;
 			in >> num;
-
-			if (in.eof())
-			{
-				in.clear();
-				break;
-			}
 
 			if (in.fail())
 			{
@@ -86,6 +80,12 @@ namespace lab2
 			max = std::max(max, num);
 
 			out << setw(COLLUM_LENTH_1) << " " << setw(COLLUM_LENTH_2) << internal << showpos << fixed << showpoint << setprecision(3) << num << endl;
+
+			if (in.eof())
+			{
+				in.clear();
+				break;
+			}
 		}
 
 		out << setw(COLLUM_LENTH_1) << left << "max:" << setw(COLLUM_LENTH_2) << internal << showpos << fixed << showpoint << setprecision(3) << max << endl;
