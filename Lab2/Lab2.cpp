@@ -13,7 +13,7 @@ namespace lab2
 		const size_t HEX_COLLUM_LENTH = 9;
 
 		bool bPreEof = false;
-		bool bIsHeadPrint = false;
+		bool bIsFirst = true;
 
 		while (true)
 		{
@@ -35,9 +35,9 @@ namespace lab2
 				continue;
 			}
 
-			if (!bIsHeadPrint)
+			if (bIsFirst)
 			{
-				bIsHeadPrint = true;
+				bIsFirst = false;
 
 				out << setw(OCT_COLLUM_LENTH) << "oct";
 				out << setw(DEC_COLLUM_LENTH) << "dec";
@@ -59,6 +59,8 @@ namespace lab2
 		const size_t COLLUM_LENTH_2 = 15;
 
 		bool bPreEof = false;
+
+		bool bIsFirst = true;
 		float max = 0.f;
 
 		while (true)
@@ -81,8 +83,9 @@ namespace lab2
 				continue;
 			}
 
-			if (0.f == max)
+			if (bIsFirst)
 			{
+				bIsFirst = false;
 				max = num;
 			}
 			max = std::max(max, num);
