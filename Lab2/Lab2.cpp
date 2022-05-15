@@ -15,24 +15,28 @@ namespace lab2
 		bool bPreEof = false;
 		bool bIsHeadPrint = false;
 
-		while (true) {
+		while (true)
+		{
 			int num = 0;
 			in >> num;
 
-			if (bPreEof && in.eof()) {
+			if (bPreEof && in.eof())
+			{
 				in.clear();
 				break;
 			}
 			bPreEof = in.eof();
 
-			if (in.fail()) {
+			if (in.fail())
+			{
 				in.clear();
 				in.ignore();
 				in.clear();
 				continue;
 			}
 
-			if (!bIsHeadPrint) {
+			if (!bIsHeadPrint)
+			{
 				bIsHeadPrint = true;
 
 				out << setw(OCT_COLLUM_LENTH) << "oct";
@@ -57,24 +61,32 @@ namespace lab2
 		bool bPreEof = false;
 		float max = 0.f;
 
-		while (true) {
+		while (true)
+		{
 			float num = 0.f;
 			in >> num;
 
-			if (bPreEof && in.eof()) {
+			if (bPreEof && in.eof())
+			{
 				in.clear();
 				break;
 			}
 			bPreEof = in.eof();
 
-			if (in.fail()) {
+			if (in.fail())
+			{
 				in.clear();
 				in.ignore();
 				in.clear();
 				continue;
 			}
-			
+
+			if (0.f == max)
+			{
+				max = num;
+			}
 			max = std::max(max, num);
+
 			out << setw(COLLUM_LENTH_1) << " " << setw(COLLUM_LENTH_2) << internal << showpos << fixed << showpoint << setprecision(3) << num << endl;
 		}
 
