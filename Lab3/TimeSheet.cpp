@@ -123,14 +123,14 @@ namespace lab3
 
 	float TimeSheet::getVariance() const
 	{
-		const float average = GetAverageTime();
+		const float averageTime = GetAverageTime();
 
 		float variance = 0.f;
 
 		for (unsigned int i = 0; i < mEntryCount; ++i)
 		{
-			float time = mEntries[i];
-			variance += (time - average) * (time - average);
+			const float time = static_cast<float>(mEntries[i]);
+			variance += (time - averageTime) * (time - averageTime);
 		}
 
 		variance /= static_cast<float>(mEntryCount);
