@@ -40,6 +40,7 @@ int main()
 
 		TimeSheet p("pppp", 1111);
 		p = c;
+		p = p;
 
 		assert(p.GetTotalTime() == 15);
 	}

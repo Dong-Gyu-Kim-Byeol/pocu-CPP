@@ -33,6 +33,11 @@ namespace lab3
 
 	void TimeSheet::operator=(const TimeSheet& other)
 	{
+		if (this == &other)
+		{
+			return;
+		}
+
 		mName = other.mName;
 		mMaxEntries = other.mMaxEntries;
 		mEntryCount = 0;
