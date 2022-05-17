@@ -77,11 +77,16 @@ namespace lab3
 			return 0.f;
 		}
 
-		return (float)mTotalTime / (float)mEntryCount;
+		return static_cast<float>(mTotalTime) / static_cast<float>(mEntryCount);
 	}
 
 	float TimeSheet::GetStandardDeviation() const
 	{
+		if (0 == mEntryCount)
+		{
+			return 0.f;
+		}
+
 		const float variance = getVariance();
 		const float standardDeviation = sqrt(variance);
 		return standardDeviation;
@@ -106,7 +111,7 @@ namespace lab3
 			variance += (time - average) * (time - average);
 		}
 
-		variance /= (float)mEntryCount;
+		variance /= static_cast<float>(mEntryCount);
 		return variance;
 	}
 }
