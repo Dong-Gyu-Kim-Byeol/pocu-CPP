@@ -21,11 +21,11 @@ int main()
 
 	{
 		TimeSheet c("Pope", 10);
-		TimeSheet p(c);
+		c.AddTime(2);
+		c.AddTime(3);
+		c.AddTime(10);
 
-		p.AddTime(2);
-		p.AddTime(3);
-		p.AddTime(10);
+		TimeSheet p(c);
 
 		assert(p.GetTimeEntry(2) == 10);
 		assert(p.GetTimeEntry(6) == -1);
@@ -34,11 +34,12 @@ int main()
 
 	{
 		TimeSheet c("Pope", 10);
-		TimeSheet p = c;
+		c.AddTime(2);
+		c.AddTime(3);
+		c.AddTime(10);
 
-		p.AddTime(2);
-		p.AddTime(3);
-		p.AddTime(10);
+		TimeSheet p("pppp", 1111);
+		p = c;
 
 		assert(p.GetTotalTime() == 15);
 	}

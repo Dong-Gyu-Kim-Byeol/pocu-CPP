@@ -22,6 +22,7 @@ namespace lab3
 
 	private:
 		float getVariance() const;
+		void setEntries(const unsigned int otherEntryCount, const int* const otherEntries);
 
 	private:
 		std::string mName;
@@ -34,7 +35,5 @@ namespace lab3
 
 		static const int MIN_TIME_IN_HOUR = 1;
 		static const int MAX_TIME_IN_HOUR = 10;
-
-
 	};
 }

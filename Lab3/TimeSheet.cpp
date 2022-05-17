@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "TimeSheet.h"
 
 namespace lab3
@@ -10,17 +12,17 @@ namespace lab3
 
 		mEntries(new int[maxEntries])
 	{
-
 	}
 
 	TimeSheet::TimeSheet(const TimeSheet& other) :
 		mName(other.mName),
 		mMaxEntries(other.mMaxEntries),
-		mEntryCount(other.mEntryCount),
-		mTotalTime(other.mTotalTime),
+		mEntryCount(0),
+		mTotalTime(0),
 
 		mEntries(new int[other.mMaxEntries])
 	{
+		setEntries(other.mEntryCount, other.mEntries);
 	}
 
 	TimeSheet::~TimeSheet()
@@ -33,11 +35,12 @@ namespace lab3
 	{
 		mName = other.mName;
 		mMaxEntries = other.mMaxEntries;
-		mEntryCount = other.mEntryCount;
-		mTotalTime = other.mTotalTime;
+		mEntryCount = 0;
+		mTotalTime = 0;
 
 		delete[] mEntries;
 		mEntries = new int[other.mMaxEntries];
+		setEntries(other.mEntryCount, other.mEntries);
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
@@ -88,7 +91,7 @@ namespace lab3
 		}
 
 		const float variance = getVariance();
-		const float standardDeviation = sqrt(variance);
+		const float standardDeviation = sqrtf(variance);
 		return standardDeviation;
 	}
 
@@ -99,6 +102,20 @@ namespace lab3
 
 
 	// private
+	void TimeSheet::setEntries(const unsigned int otherEntryCount, const int* const otherEntries)
+	{
+		assert(otherEntryCount <= mMaxEntries);
+
+		mEntryCount = otherEntryCount;
+		mTotalTime = 0;
+
+		for (unsigned int i = 0; i < otherEntryCount; ++i)
+		{
+			mEntries[i] = otherEntries[i];
+			mTotalTime += otherEntries[i];
+		}
+	}
+
 	float TimeSheet::getVariance() const
 	{
 		const float average = GetAverageTime();
