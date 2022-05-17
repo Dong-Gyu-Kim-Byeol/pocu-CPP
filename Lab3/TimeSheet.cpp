@@ -6,19 +6,21 @@ namespace lab3
 		mName(name),
 		mMaxEntries(maxEntries),
 		mEntryCount(0),
-		mTotalTime(0)
+		mTotalTime(0),
+
+		mEntries(new int[maxEntries])
 	{
-		mEntries = new int[maxEntries];
+
 	}
 
 	TimeSheet::TimeSheet(const TimeSheet& other) :
 		mName(other.mName),
 		mMaxEntries(other.mMaxEntries),
 		mEntryCount(other.mEntryCount),
-		mTotalTime(other.mTotalTime)
+		mTotalTime(other.mTotalTime),
+
+		mEntries(new int[other.mMaxEntries])
 	{
-		delete[] mEntries;
-		mEntries = new int[other.mMaxEntries];
 	}
 
 	TimeSheet::~TimeSheet()
