@@ -122,7 +122,7 @@ namespace assignment1
 		{
 			mCString[start] = mCString[start + 1];
 		}
-		mLength -= 1;
+		--mLength;
 		mCString[mLength] = '\0';
 
 		return true;
