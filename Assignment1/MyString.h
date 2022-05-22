@@ -35,7 +35,7 @@ namespace assignment1
 	private:
 		static unsigned int calculateLength(const char* s);
 		static int indexOfRabinKarp(const char* const str, const char* const word);
-		static int lastIndexOfRabinKarp(const char* const str, const char* const word);
+		static int lastIndexOfRabinKarp(const char* const str, const unsigned int strLength, const char* const word);
 		static bool isEqual(const char* const s1, const char* const s2);
 
 	private:

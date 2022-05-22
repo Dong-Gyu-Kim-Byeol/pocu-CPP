@@ -10,6 +10,11 @@ namespace assignment1
 		mLength(0),
 		mCString(nullptr)
 	{
+		if (nullptr == s)
+		{
+			s = "";
+		}
+
 		init(s);
 	}
 
@@ -37,6 +42,11 @@ namespace assignment1
 
 	void MyString::Append(const char* s)
 	{
+		if (nullptr == s || '\0' == *s)
+		{
+			return;
+		}
+
 		const unsigned int preLength = mLength;
 		const char* preCString = mCString;
 		mCString = nullptr;
@@ -66,16 +76,31 @@ namespace assignment1
 
 	int MyString::IndexOf(const char* s)
 	{
+		if (nullptr == s)
+		{
+			return -1;
+		}
+
 		return indexOfRabinKarp(GetCString(), s);
 	}
 
 	int MyString::LastIndexOf(const char* s)
 	{
-		return lastIndexOfRabinKarp(GetCString(), s);;
+		if (nullptr == s)
+		{
+			return -1;
+		}
+
+		return lastIndexOfRabinKarp(GetCString(), GetLength(), s);;
 	}
 
 	void MyString::Interleave(const char* s)
 	{
+		if (nullptr == s || '\0' == *s)
+		{
+			return;
+		}
+
 		const unsigned int preLength = mLength;
 		const char* preCString = mCString;
 		mCString = nullptr;
@@ -83,27 +108,29 @@ namespace assignment1
 		mLength += calculateLength(s);
 		mCString = new char[mLength + 1];
 
+		char* pMCString = mCString;
 		const char* pPreCString = preCString;
 		const char* pS = s;
-		for (unsigned int i = 0; i < mLength; )
+		while ('\0' != *pPreCString || '\0' != *pS)
 		{
 			if ('\0' != *pPreCString)
 			{
-				mCString[i] = *pPreCString;
+				*pMCString = *pPreCString;
 
 				++pPreCString;
-				++i;
+				++pMCString;
 			}
 
 			if ('\0' != *pS)
 			{
-				mCString[i] = *pS;
+				*pMCString = *pS;
 
 				++pS;
-				++i;
+				++pMCString;
 			}
 		}
 		mCString[mLength] = '\0';
+		pMCString = nullptr;
 		pPreCString = nullptr;
 		pS = nullptr;
 
@@ -113,7 +140,7 @@ namespace assignment1
 
 	bool MyString::RemoveAt(unsigned int i)
 	{
-		if (mLength > 0 && mLength <= i)
+		if (0 == mLength || mLength <= i)
 		{
 			return false;
 		}
@@ -185,6 +212,11 @@ namespace assignment1
 
 	void MyString::Reverse()
 	{
+		if (GetLength() == 0)
+		{
+			return;
+		}
+
 		unsigned int left = 0;
 		unsigned int right = GetLength() - 1;
 
@@ -433,7 +465,7 @@ namespace assignment1
 		}
 	}
 
-	int MyString::lastIndexOfRabinKarp(const char* const str, const char* const word)
+	int MyString::lastIndexOfRabinKarp(const char* const str, const unsigned int strLength, const char* const word)
 	{
 		const unsigned int MUL = 256;
 		const unsigned int MOD_PRIME = 101;
@@ -449,7 +481,7 @@ namespace assignment1
 
 		if ('\0' == *word)
 		{
-			return 0;
+			return strLength;
 		}
 
 		// make hash
