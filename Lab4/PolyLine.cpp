@@ -12,18 +12,12 @@ namespace lab4
 	{
 	}
 
-	/*PolyLine::PolyLine(const PolyLine& other) :
-		mPointCount(other.mPointCount),
+	PolyLine::PolyLine(const PolyLine& other) :
+		mPointCount(0),
 		mPoints{ 0, }
 	{
-
-		for (unsigned int i = 0; i < other.mPointCount; ++i)
-		{
-			const Point* newPoint = new Point(*other.mPoints[i]);
-			mPoints[i] = newPoint;
-			newPoint = nullptr;
-		}
-	}*/
+		this->operator=(other);
+	}
 
 	PolyLine::~PolyLine()
 	{
@@ -129,6 +123,20 @@ namespace lab4
 		}
 
 		return mPoints[i];
+	}
+
+	void PolyLine::operator=(const PolyLine& other)
+	{
+		this->~PolyLine();
+
+		mPointCount = other.mPointCount;
+
+		for (unsigned int i = 0; i < other.mPointCount; ++i)
+		{
+			const Point* newPoint = new Point(*other.mPoints[i]);
+			mPoints[i] = newPoint;
+			newPoint = nullptr;
+		}
 	}
 
 
