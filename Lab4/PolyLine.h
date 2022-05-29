@@ -19,14 +19,13 @@ namespace lab4
 		const Point* operator[](unsigned int i) const;
 
 	private:
-		int getLastIndex() const;
 		bool tryGetMinMaxXY(float* outMinX, float* outMinY, float* outMaxX, float* outMaxY) const;
 
 	private:
-		static const int MAX_POINT_COUNT = 10;
+		static const unsigned int MAX_POINT_COUNT = 10;
 
 	private:
 		const Point* mPoints[MAX_POINT_COUNT];
-		int mPointCount;
+		unsigned int mPointCount;
 	};
 }

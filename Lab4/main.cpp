@@ -47,6 +47,8 @@ int main()
 	pl1.AddPoint(4, -1);
 	pl1.AddPoint(6, 4);
 
+	pl1[2];
+
 	bool bRemoved = pl1.RemovePoint(4);
 
 	assert(bRemoved);

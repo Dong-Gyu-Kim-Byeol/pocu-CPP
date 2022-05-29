@@ -17,16 +17,17 @@ namespace lab4
 		mPoints{ 0, }
 	{
 
-		for (int i = 0; i < other.mPointCount; ++i)
+		for (unsigned int i = 0; i < other.mPointCount; ++i)
 		{
 			const Point* newPoint = new Point(*other.mPoints[i]);
 			mPoints[i] = newPoint;
+			newPoint = nullptr;
 		}
 	}
 
 	PolyLine::~PolyLine()
 	{
-		for (int i = 0; i < mPointCount; ++i)
+		for (unsigned int i = 0; i < mPointCount; ++i)
 		{
 			delete mPoints[i];
 			mPoints[i] = nullptr;
@@ -49,6 +50,8 @@ namespace lab4
 		if (!bIsAdd)
 		{
 			delete newPoint;
+			newPoint = nullptr;
+
 			return false;
 		}
 
@@ -71,17 +74,16 @@ namespace lab4
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
-		const int lastIndex = getLastIndex();
-		if (lastIndex < i)
+		if (0 == mPointCount || mPointCount - 1 < i)
 		{
 			return false;
 		}
 
-		for (unsigned int index = i; index <= lastIndex - 1; ++index)
+		for (unsigned int index = i; index < mPointCount - 1; ++index)
 		{
 			mPoints[index] = mPoints[index + 1];
 		}
-		mPoints[lastIndex] = nullptr;
+		mPoints[mPointCount - 1] = nullptr;
 
 		--mPointCount;
 		return true;
@@ -112,8 +114,7 @@ namespace lab4
 
 	const Point* PolyLine::operator[](unsigned int i) const
 	{
-		const int lastIndex = getLastIndex();
-		if (lastIndex < i)
+		if (0 == mPointCount || mPointCount - 1 < i)
 		{
 			return nullptr;
 		}
@@ -123,27 +124,19 @@ namespace lab4
 
 
 	// private
-	int PolyLine::getLastIndex() const
-	{
-		assert(0 <= mPointCount);
-		return mPointCount - 1;
-	}
-
 	bool PolyLine::tryGetMinMaxXY(float* outMinX, float* outMinY, float* outMaxX, float* outMaxY) const
 	{
-		assert(0 <= mPointCount);
-		if (mPointCount <= 0)
+		if (0 == mPointCount)
 		{
 			return false;
 		}
 
-		const int lastIndex = getLastIndex();
 		*outMinX = mPoints[0]->GetX();
 		*outMinY = mPoints[0]->GetY();
 		*outMaxX = mPoints[0]->GetX();
 		*outMaxY = mPoints[0]->GetY();
 
-		for (int i = 0; i <= lastIndex; ++i)
+		for (unsigned int i = 0; i < mPointCount; ++i)
 		{
 			const Point& point = *mPoints[i];
 
