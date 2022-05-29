@@ -80,7 +80,7 @@ namespace lab4
 		{
 			return false;
 		}
-				
+
 		delete mPoints[i];
 		mPoints[i] = nullptr;
 
@@ -109,7 +109,8 @@ namespace lab4
 			return false;
 		}
 
-		if (minX >= maxX || minY >= maxY)
+		// 사각형의 넓이가 0이여도 경계점을 구할 수 있으면 정상 동작
+		if (minX > maxX || minY > maxY)
 		{
 			return false;
 		}
