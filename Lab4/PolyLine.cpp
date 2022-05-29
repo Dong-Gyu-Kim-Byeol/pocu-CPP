@@ -12,7 +12,7 @@ namespace lab4
 	{
 	}
 
-	PolyLine::PolyLine(const PolyLine& other) :
+	/*PolyLine::PolyLine(const PolyLine& other) :
 		mPointCount(other.mPointCount),
 		mPoints{ 0, }
 	{
@@ -23,7 +23,7 @@ namespace lab4
 			mPoints[i] = newPoint;
 			newPoint = nullptr;
 		}
-	}
+	}*/
 
 	PolyLine::~PolyLine()
 	{

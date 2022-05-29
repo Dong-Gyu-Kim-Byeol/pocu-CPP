@@ -8,7 +8,7 @@ namespace lab4
 	{
 	public:
 		PolyLine();
-		PolyLine(const PolyLine& other);
+		//PolyLine(const PolyLine& other);
 		~PolyLine();
 
 		bool AddPoint(float x, float y);
