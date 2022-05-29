@@ -21,7 +21,7 @@ namespace lab3
 		const std::string& GetName() const;
 
 	private:
-		void setEntries(const unsigned int otherEntryCount, const int* const otherEntries);
+		void initEntries(const unsigned int otherEntryCount, const int* const otherEntries);
 		float getVariance() const;
 
 	private:

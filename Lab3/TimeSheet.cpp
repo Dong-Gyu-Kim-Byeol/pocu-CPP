@@ -22,7 +22,7 @@ namespace lab3
 
 		mEntries(new int[other.mMaxEntries])
 	{
-		setEntries(other.mEntryCount, other.mEntries);
+		initEntries(other.mEntryCount, other.mEntries);
 	}
 
 	TimeSheet::~TimeSheet()
@@ -45,7 +45,7 @@ namespace lab3
 
 		delete[] mEntries;
 		mEntries = new int[other.mMaxEntries];
-		setEntries(other.mEntryCount, other.mEntries);
+		initEntries(other.mEntryCount, other.mEntries);
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
@@ -107,7 +107,7 @@ namespace lab3
 
 
 	// private
-	void TimeSheet::setEntries(const unsigned int otherEntryCount, const int* const otherEntries)
+	void TimeSheet::initEntries(const unsigned int otherEntryCount, const int* const otherEntries)
 	{
 		assert(otherEntryCount <= mMaxEntries);
 
