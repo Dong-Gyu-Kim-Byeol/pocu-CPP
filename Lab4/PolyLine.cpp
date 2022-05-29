@@ -60,6 +60,8 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
+		assert(nullptr != point);
+
 		assert(0 <= mPointCount);
 		if (mPointCount >= MAX_POINT_COUNT)
 		{
@@ -78,6 +80,9 @@ namespace lab4
 		{
 			return false;
 		}
+				
+		delete mPoints[i];
+		mPoints[i] = nullptr;
 
 		for (unsigned int index = i; index < mPointCount - 1; ++index)
 		{
@@ -91,6 +96,9 @@ namespace lab4
 
 	bool PolyLine::TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const
 	{
+		assert(nullptr != outMin);
+		assert(nullptr != outMax);
+
 		float minX = 0.f;
 		float minY = 0.f;
 		float maxX = 0.f;
