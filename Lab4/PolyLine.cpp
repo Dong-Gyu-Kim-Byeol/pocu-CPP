@@ -16,7 +16,7 @@ namespace lab4
 		mPointCount(0),
 		mPoints{ 0, }
 	{
-		this->operator=(other);
+		initPoints(other.mPointCount, other.mPoints);
 	}
 
 	PolyLine::~PolyLine()
@@ -127,20 +127,29 @@ namespace lab4
 
 	void PolyLine::operator=(const PolyLine& other)
 	{
+		if (this == &other)
+		{
+			return;
+		}
+
 		this->~PolyLine();
 
-		mPointCount = other.mPointCount;
+		initPoints(other.mPointCount, other.mPoints);
+	}
 
-		for (unsigned int i = 0; i < other.mPointCount; ++i)
+	// private
+	void PolyLine::initPoints(const unsigned int otherPointCount, const Point* const otherPoints[])
+	{
+		mPointCount = otherPointCount;
+
+		for (unsigned int i = 0; i < otherPointCount; ++i)
 		{
-			const Point* newPoint = new Point(*other.mPoints[i]);
+			const Point* newPoint = new Point(*otherPoints[i]);
 			mPoints[i] = newPoint;
 			newPoint = nullptr;
 		}
 	}
 
-
-	// private
 	bool PolyLine::tryGetMinMaxXY(float* outMinX, float* outMinY, float* outMaxX, float* outMaxY) const
 	{
 		if (0 == mPointCount)

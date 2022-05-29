@@ -20,6 +20,7 @@ namespace lab4
 		void operator=(const PolyLine& other);
 
 	private:
+		void initPoints(const unsigned int otherPointCount, const Point* const otherPoints[]);
 		bool tryGetMinMaxXY(float* outMinX, float* outMinY, float* outMaxX, float* outMaxY) const;
 
 	private:
