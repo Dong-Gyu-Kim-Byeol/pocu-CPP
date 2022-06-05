@@ -20,8 +20,8 @@ namespace lab5
 
 	unsigned int EquilateralTriangleLawn::GetArea() const
 	{
-		const double area = static_cast<double>(mWidth) * static_cast<double>(mWidth) * sqrt(2.0) / 4.0;
-		return ceil(area);
+		const double area = mWidth * mWidth * sqrt(3.0) / 4.0;
+		return static_cast<unsigned int>(round(area));
 	}
 
 	unsigned int EquilateralTriangleLawn::GetMinimumFencesCount() const
@@ -29,7 +29,7 @@ namespace lab5
 		const double round = mWidth * 3.0;
 		const double rollCount = round / IFenceable::FENCE_WIDTH;
 
-		return ceil(rollCount);
+		return static_cast<unsigned int>(ceil(rollCount));
 	}
 
 	unsigned int EquilateralTriangleLawn::GetFencePrice(eFenceType fenceType) const
@@ -50,6 +50,6 @@ namespace lab5
 			break;
 		}
 
-		return round(price);
+		return static_cast<unsigned int>(round(price));
 	}
 }

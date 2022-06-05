@@ -16,7 +16,7 @@ namespace lab5
 		virtual unsigned int GetFencePrice(eFenceType fenceType) const override;
 
 	private:
-		const unsigned int mHeight;
-		const unsigned int mWidth;
+		const double mHeight;
+		const double mWidth;
 	};
 }

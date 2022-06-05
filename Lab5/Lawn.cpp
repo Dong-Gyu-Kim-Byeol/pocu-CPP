@@ -20,25 +20,25 @@ namespace lab5
 
 	unsigned int Lawn::GetGrassPrice(eGrassType grassType) const
 	{
-		const double rollCount = GetMinimumSodRollsCount();
+		const double area = GetArea();
 
 		double priceSent = 0.0;
 		switch (grassType)
 		{
 		case lab5::BERMUDA:
-			priceSent = rollCount * 800.0 * ROLL_AREA;
+			priceSent = area * 800.0;
 			break;
 		case lab5::BAHIA:
-			priceSent = rollCount * 500.0 * ROLL_AREA;
+			priceSent = area * 500.0;
 			break;
 		case lab5::BENTGRASS:
-			priceSent = rollCount * 300.0 * ROLL_AREA;
+			priceSent = area * 300.0;
 			break;
 		case lab5::PERENNIAL_RYEGRASS:
-			priceSent = rollCount * 250.0 * ROLL_AREA;
+			priceSent = area * 250.0;
 			break;
 		case lab5::ST_AUGUSTINE:
-			priceSent = rollCount * 450.0 * ROLL_AREA;
+			priceSent = area * 450.0;
 			break;
 		default:
 			assert(false);
@@ -46,7 +46,7 @@ namespace lab5
 		}
 
 		const double price = priceSent / 100.0;
-		return price;
+		return static_cast<unsigned int>(round(price));
 	}
 
 	unsigned int Lawn::GetMinimumSodRollsCount() const
@@ -54,6 +54,6 @@ namespace lab5
 		const double area = GetArea();
 		const double rollCount = area / ROLL_AREA;
 
-		return ceil(rollCount);
+		return static_cast<unsigned int>(ceil(rollCount));
 	}
 }

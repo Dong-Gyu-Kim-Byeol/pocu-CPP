@@ -35,9 +35,9 @@ void WikiTest1()
 	sodRollsCount = lawn->GetMinimumSodRollsCount();
 	fencePrice = equilateralTriangleLawn->GetFencePrice(RED_CEDAR);
 	fencesCount = equilateralTriangleLawn->GetMinimumFencesCount();
-	//assert(area == 21);
-	//assert(grassPrice == 95);
-	//assert(sodRollsCount == 70);
+	assert(area == 21);
+	assert(grassPrice == 95);
+	assert(sodRollsCount == 70);
 	assert(fencePrice == 126);
 	assert(fencesCount == 84);
 	equilateralTriangleLawn = nullptr;
@@ -327,8 +327,8 @@ int main()
 	assert(fencesCount == 240);
 
 	
-	//WikiTest1();
-	//WikiTest2();
+	WikiTest1();
+	WikiTest2();
 
 	return 0;
 }

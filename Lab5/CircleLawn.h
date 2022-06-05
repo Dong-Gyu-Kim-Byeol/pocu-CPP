@@ -13,7 +13,7 @@ namespace lab5
 		virtual unsigned int GetArea() const override;
 
 	private:
-		const unsigned int mRadius;
+		const double mRadius;
 
 		static const double PI;
 	};

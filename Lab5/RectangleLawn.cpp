@@ -21,8 +21,8 @@ namespace lab5
 
 	unsigned int RectangleLawn::GetArea() const
 	{
-		const double area = static_cast<double>(mHeight) * static_cast<double>(mWidth);
-		return ceil(area);
+		const double area = mHeight * mWidth;
+		return static_cast<unsigned int>(round(area));
 	}
 
 	unsigned int RectangleLawn::GetMinimumFencesCount() const
@@ -30,7 +30,7 @@ namespace lab5
 		const double round = mWidth * 2.0 + mHeight * 2.0;
 		const double rollCount = round / IFenceable::FENCE_WIDTH;
 
-		return ceil(rollCount);
+		return static_cast<unsigned int>(ceil(rollCount));
 	}
 
 	unsigned int RectangleLawn::GetFencePrice(eFenceType fenceType) const
@@ -51,6 +51,6 @@ namespace lab5
 			break;
 		}
 
-		return round(price);
+		return static_cast<unsigned int>(round(price));
 	}
 }

@@ -20,7 +20,7 @@ namespace lab5
 
 	unsigned int CircleLawn::GetArea() const
 	{
-		const double area = static_cast<double>(mRadius) * static_cast<double>(mRadius) * PI;
-		return static_cast<unsigned int>(ceil(area));
+		const double area = mRadius * mRadius * PI;
+		return static_cast<unsigned int>(round(area));
 	}
 }
