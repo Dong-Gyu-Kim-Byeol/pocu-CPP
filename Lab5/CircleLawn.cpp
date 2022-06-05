@@ -6,7 +6,7 @@ namespace lab5
 {
 	const double CircleLawn::PI = 3.14;
 
-	CircleLawn::CircleLawn(const double radius) :
+	CircleLawn::CircleLawn(const unsigned int radius) :
 		mRadius(radius)
 	{
 	}
@@ -20,7 +20,7 @@ namespace lab5
 
 	unsigned int CircleLawn::GetArea() const
 	{
-		const double area = mRadius * mRadius * PI;
+		const double area = static_cast<double>(mRadius) * static_cast<double>(mRadius) * PI;
 		return static_cast<unsigned int>(ceil(area));
 	}
 }
