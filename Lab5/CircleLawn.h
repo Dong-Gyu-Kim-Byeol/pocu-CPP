@@ -7,13 +7,13 @@ namespace lab5
 	class CircleLawn : public Lawn
 	{
 	public:
-		CircleLawn(const unsigned int radius);
+		CircleLawn(const double radius);
 
 		virtual ~CircleLawn();
 		virtual unsigned int GetArea() const override;
 
 	private:
-		const unsigned int mRadius;
+		const double mRadius;
 
 		static const double PI;
 	};

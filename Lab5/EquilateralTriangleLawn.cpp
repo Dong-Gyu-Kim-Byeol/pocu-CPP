@@ -26,7 +26,7 @@ namespace lab5
 
 	unsigned int EquilateralTriangleLawn::GetMinimumFencesCount() const
 	{
-		const double round = 3.0 * mWidth;
+		const double round = mWidth * 3.0;
 		const double rollCount = round / IFenceable::FENCE_WIDTH;
 
 		return ceil(rollCount);

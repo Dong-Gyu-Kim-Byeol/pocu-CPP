@@ -27,7 +27,7 @@ namespace lab5
 
 	unsigned int RectangleLawn::GetMinimumFencesCount() const
 	{
-		const double round = 2.0 * mWidth + 2.0 * mHeight;
+		const double round = mWidth * 2.0 + mHeight * 2.0;
 		const double rollCount = round / IFenceable::FENCE_WIDTH;
 
 		return ceil(rollCount);
