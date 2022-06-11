@@ -79,7 +79,8 @@ namespace lab6
 		return maxNum;
 	}
 
-	void SortDescending(std::vector<int>& v)
+	// map을 후위 순회하는 방법
+	/*void SortDescending(std::vector<int>& v)
 	{
 		std::map<int, size_t> countMap;
 
@@ -94,6 +95,21 @@ namespace lab6
 			for (int i = 0; i < count; ++i)
 			{
 				v[vIndex++] = num;
+			}
+		}
+	}*/
+
+	void SortDescending(std::vector<int>& v)
+	{
+		const size_t size = v.size();
+		for (size_t left = 0; left < size; ++left)
+		{
+			for (size_t right = left + 1; right < size; ++right)
+			{
+				if (v[left] < v[right])
+				{
+					v[left] = v[right];
+				}
 			}
 		}
 	}
