@@ -54,6 +54,8 @@ namespace assignment2
 			return *this;
 		}
 
+		this->~Vehicle();
+
 		this->mMaxPassengersCount = rhs.mMaxPassengersCount;
 		this->mPassengersCount = 0;
 		this->mTotalPassengerWeight = 0;

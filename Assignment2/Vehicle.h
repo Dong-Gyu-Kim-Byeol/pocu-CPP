@@ -9,7 +9,7 @@ namespace assignment2
 	public:
 		Vehicle(unsigned int maxPassengersCount);
 		Vehicle(const Vehicle& other);
-		virtual Vehicle& operator=(const Vehicle& rhs);
+		Vehicle& operator=(const Vehicle& rhs);
 		virtual ~Vehicle();		
 
 		virtual void Move() = 0;

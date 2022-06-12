@@ -19,7 +19,7 @@ namespace assignment2
 
 		DeusExMachina();
 		DeusExMachina(const DeusExMachina& other) = delete;
-		virtual DeusExMachina& operator=(const DeusExMachina& other) = delete;
+		DeusExMachina& operator=(const DeusExMachina& other) = delete;
 		virtual ~DeusExMachina();		
 
 		enum eDeusExMachina

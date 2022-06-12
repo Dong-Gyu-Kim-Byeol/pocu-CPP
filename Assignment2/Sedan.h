@@ -13,7 +13,7 @@ namespace assignment2
 	public:
 		Sedan();
 		Sedan(const Sedan& other);
-		virtual Sedan& operator=(const Sedan& rhs);
+		Sedan& operator=(const Sedan& rhs);
 		virtual ~Sedan();
 
 		virtual void Move();

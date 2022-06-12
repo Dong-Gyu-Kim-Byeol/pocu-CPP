@@ -38,6 +38,8 @@ namespace assignment2
 			return *this;
 		}
 
+		this->~Sedan();
+
 		this->Vehicle::operator=(rhs);
 
 		mTrailerOrNull = nullptr;
