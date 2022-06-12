@@ -1,6 +1,5 @@
 #include <cassert>
 
-#include "Person.h"
 #include "Vehicle.h"
 
 namespace assignment2

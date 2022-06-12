@@ -1,9 +1,9 @@
 #pragma once
 
+#include "Person.h"
+
 namespace assignment2
 {
-	class Person;
-
 	class Vehicle
 	{
 	public:
