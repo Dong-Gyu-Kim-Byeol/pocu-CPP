@@ -22,7 +22,7 @@ namespace assignment2
 		Boatplane operator+(Airplane& plane);
 
 	private:
-		enum EBoat
+		enum eBoat
 		{
 			MAX_MOVE_TIME = 2,
 			MAX_REST_TIME = 1,

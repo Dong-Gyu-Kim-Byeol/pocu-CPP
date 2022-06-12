@@ -23,7 +23,7 @@ namespace assignment2
 		virtual unsigned int GetSailSpeed() const;
 
 	private:
-		enum EBoatplane
+		enum eBoatplane
 		{
 			MAX_MOVE_TIME = 1,
 			MAX_REST_TIME = 3,

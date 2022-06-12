@@ -19,7 +19,7 @@ namespace assignment2
 		virtual unsigned int GetSailSpeed() const;
 
 	private:
-		enum EUBoat
+		enum eUBoat
 		{
 			MAX_PASSENGERS_COUNT = 50,
 			MAX_MOVE_TIME = 2,

@@ -26,7 +26,7 @@ namespace assignment2
 		void ResetMovedDistance();
 
 	protected:
-		enum EVehicle
+		enum eVehicle
 		{
 			MAX_PASSENGERS_COUNT = 100
 		};
@@ -38,7 +38,7 @@ namespace assignment2
 	private:
 		unsigned int mMaxPassengersCount;
 		unsigned int mPassengersCount;
-		const Person* mPassengers[EVehicle::MAX_PASSENGERS_COUNT];
+		const Person* mPassengers[eVehicle::MAX_PASSENGERS_COUNT];
 
 		unsigned int mTotalPassengerWeight;
 	};

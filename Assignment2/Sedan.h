@@ -27,7 +27,7 @@ namespace assignment2
 		unsigned int getTrailerWeight() const;
 
 	private:
-		enum ESedan
+		enum eSedan
 		{
 			MAX_PASSENGERS_COUNT = 4,
 			MAX_MOVE_TIME_NONE_TRAILER = 5,

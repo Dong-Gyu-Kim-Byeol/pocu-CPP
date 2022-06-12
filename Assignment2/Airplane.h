@@ -26,7 +26,7 @@ namespace assignment2
 		static const double EULER_NUMBER;
 
 	private:
-		enum EAirplane
+		enum eAirplane
 		{
 			MAX_MOVE_TIME = 1,
 			MAX_REST_TIME = 3,

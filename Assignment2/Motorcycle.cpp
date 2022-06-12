@@ -6,7 +6,7 @@
 namespace assignment2
 {
 	Motorcycle::Motorcycle() :
-		Vehicle(EMotorcycle::MAX_PASSENGERS_COUNT)
+		Vehicle(eMotorcycle::MAX_PASSENGERS_COUNT)
 	{
 	}
 
@@ -16,13 +16,13 @@ namespace assignment2
 
 	void Motorcycle::Move()
 	{
-		if (mMovedTime >= EMotorcycle::MAX_MOVE_TIME && mRestedTime >= EMotorcycle::MAX_REST_TIME)
+		if (mMovedTime >= eMotorcycle::MAX_MOVE_TIME && mRestedTime >= eMotorcycle::MAX_REST_TIME)
 		{
 			mMovedTime = 0;
 			mRestedTime = 0;
 		}
 
-		if (mMovedTime >= EMotorcycle::MAX_MOVE_TIME)
+		if (mMovedTime >= eMotorcycle::MAX_MOVE_TIME)
 		{
 			++mRestedTime;
 			return;

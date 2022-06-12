@@ -6,7 +6,7 @@
 namespace assignment2
 {
 	UBoat::UBoat() :
-		Vehicle(EUBoat::MAX_PASSENGERS_COUNT)
+		Vehicle(eUBoat::MAX_PASSENGERS_COUNT)
 	{
 	}
 
@@ -16,13 +16,13 @@ namespace assignment2
 
 	void UBoat::Move()
 	{
-		if (mMovedTime >= EUBoat::MAX_MOVE_TIME && mRestedTime >= EUBoat::MAX_REST_TIME)
+		if (mMovedTime >= eUBoat::MAX_MOVE_TIME && mRestedTime >= eUBoat::MAX_REST_TIME)
 		{
 			mMovedTime = 0;
 			mRestedTime = 0;
 		}
 
-		if (mMovedTime >= EUBoat::MAX_MOVE_TIME)
+		if (mMovedTime >= eUBoat::MAX_MOVE_TIME)
 		{
 			++mRestedTime;
 			return;
@@ -44,8 +44,8 @@ namespace assignment2
 		// 500 * log((x + 150)/150) + 30
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
-		const double speed = 500.0 * std::log10((weight + 150.0) / 150.0) + 30.0;
-		return static_cast<unsigned int>(std::round(speed));
+		const double speed = std::round(500.0 * std::log10((weight + 150.0) / 150.0) + 30.0);
+		return static_cast<unsigned int>(speed);
 	}
 
 	unsigned int UBoat::GetSailSpeed() const
@@ -53,7 +53,7 @@ namespace assignment2
 		// MAX((550 - x/10), 200)
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
-		const double speed = std::max((550.0 - weight / 10.0), 200.0);
-		return static_cast<unsigned int>(std::round(speed));
+		const double speed = std::round(std::max((550.0 - weight / 10.0), 200.0));
+		return static_cast<unsigned int>(speed);
 	}
 }

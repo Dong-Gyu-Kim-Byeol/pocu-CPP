@@ -20,13 +20,13 @@ namespace assignment2
 
 	void Boat::Move()
 	{
-		if (mMovedTime >= EBoat::MAX_MOVE_TIME && mRestedTime >= EBoat::MAX_REST_TIME)
+		if (mMovedTime >= eBoat::MAX_MOVE_TIME && mRestedTime >= eBoat::MAX_REST_TIME)
 		{
 			mMovedTime = 0;
 			mRestedTime = 0;
 		}
 
-		if (mMovedTime >= EBoat::MAX_MOVE_TIME)
+		if (mMovedTime >= eBoat::MAX_MOVE_TIME)
 		{
 			++mRestedTime;
 			return;
@@ -58,20 +58,6 @@ namespace assignment2
 
 		while (true)
 		{
-			const Person* person = this->GetPassenger(0);
-			if (person == nullptr)
-			{
-				break;
-			}
-
-			const Person* newPerson = new Person(*person);
-			bp.AddPassenger(newPerson);
-
-			this->RemovePassenger(0);
-		}
-
-		while (true)
-		{
 			const Person* person = plane.GetPassenger(0);
 			if (person == nullptr)
 			{
@@ -83,6 +69,20 @@ namespace assignment2
 
 			plane.RemovePassenger(0);
 		}
+
+		while (true)
+		{
+			const Person* person = this->GetPassenger(0);
+			if (person == nullptr)
+			{
+				break;
+			}
+
+			const Person* newPerson = new Person(*person);
+			bp.AddPassenger(newPerson);
+
+			this->RemovePassenger(0);
+		}		
 
 		return bp;
 	}

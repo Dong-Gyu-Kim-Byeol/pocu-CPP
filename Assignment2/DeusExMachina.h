@@ -22,13 +22,13 @@ namespace assignment2
 		DeusExMachina(const DeusExMachina& other) = delete;
 		DeusExMachina& operator=(const DeusExMachina& other) = delete;
 
-		enum EDeusExMachina
+		enum eDeusExMachina
 		{
 			MAX_VEHICLES_COUNT = 10,
 		};
 
 	private:
 		unsigned int mVehiclesCount;
-		Vehicle* mVehicles[EDeusExMachina::MAX_VEHICLES_COUNT];
+		Vehicle* mVehicles[eDeusExMachina::MAX_VEHICLES_COUNT];
 	};
 }

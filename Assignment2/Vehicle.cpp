@@ -14,7 +14,7 @@ namespace assignment2
 		mMovedTime(0),
 		mRestedTime(0)
 	{
-		assert(maxPassengersCount <= EVehicle::MAX_PASSENGERS_COUNT);
+		assert(maxPassengersCount <= eVehicle::MAX_PASSENGERS_COUNT);
 	}
 
 	Vehicle::~Vehicle()

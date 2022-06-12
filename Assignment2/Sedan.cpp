@@ -6,7 +6,7 @@
 namespace assignment2
 {
 	Sedan::Sedan() :
-		Vehicle(ESedan::MAX_PASSENGERS_COUNT),
+		Vehicle(eSedan::MAX_PASSENGERS_COUNT),
 		mTrailerOrNull(nullptr)
 	{
 	}
@@ -21,7 +21,7 @@ namespace assignment2
 	}
 
 	Sedan::Sedan(const Sedan& other) :
-		Vehicle(ESedan::MAX_PASSENGERS_COUNT),
+		Vehicle(eSedan::MAX_PASSENGERS_COUNT),
 		mTrailerOrNull(nullptr)
 	{
 		if (other.mTrailerOrNull != nullptr)
@@ -39,7 +39,7 @@ namespace assignment2
 		}
 
 		this->Vehicle::operator=(rhs);
-		
+
 		mTrailerOrNull = nullptr;
 		if (rhs.mTrailerOrNull != nullptr)
 		{
@@ -54,13 +54,13 @@ namespace assignment2
 	{
 		if (mTrailerOrNull == nullptr)
 		{
-			if (mMovedTime >= ESedan::MAX_MOVE_TIME_NONE_TRAILER && mRestedTime >= ESedan::MAX_REST_TIME_NONE_TRAILER)
+			if (mMovedTime >= eSedan::MAX_MOVE_TIME_NONE_TRAILER && mRestedTime >= eSedan::MAX_REST_TIME_NONE_TRAILER)
 			{
 				mMovedTime = 0;
 				mRestedTime = 0;
 			}
 
-			if (mMovedTime >= ESedan::MAX_MOVE_TIME_NONE_TRAILER)
+			if (mMovedTime >= eSedan::MAX_MOVE_TIME_NONE_TRAILER)
 			{
 				++mRestedTime;
 				return;
@@ -75,13 +75,13 @@ namespace assignment2
 
 		if (mTrailerOrNull != nullptr)
 		{
-			if (mMovedTime >= ESedan::MAX_MOVE_TIME_TRAILER && mRestedTime >= ESedan::MAX_REST_TIME_TRAILER)
+			if (mMovedTime >= eSedan::MAX_MOVE_TIME_TRAILER && mRestedTime >= eSedan::MAX_REST_TIME_TRAILER)
 			{
 				mMovedTime = 0;
 				mRestedTime = 0;
 			}
 
-			if (mMovedTime >= ESedan::MAX_MOVE_TIME_TRAILER)
+			if (mMovedTime >= eSedan::MAX_MOVE_TIME_TRAILER)
 			{
 				++mRestedTime;
 				return;
@@ -111,25 +111,25 @@ namespace assignment2
 		const double weight = static_cast<double>(GetTotalPassengerWeight()) + static_cast<double>(getTrailerWeight());
 
 		double speed = 0.0;
-		if (weight <= 80)
+		if (weight > 350)
 		{
-			speed = 480.0;
-		}
-		else if (weight > 80)
-		{
-			speed = 458.0;
-		}
-		else if (weight > 160)
-		{
-			speed = 400.0;
+			speed = 300.0;
 		}
 		else if (weight > 260)
 		{
 			speed = 380.0;
 		}
-		else if (weight > 350)
+		else if (weight > 160)
 		{
-			speed = 300.0;
+			speed = 400.0;
+		}
+		else if (weight > 80)
+		{
+			speed = 458.0;
+		}
+		else if (weight <= 80)
+		{
+			speed = 480.0;
 		}
 
 		assert(speed != 0.0);

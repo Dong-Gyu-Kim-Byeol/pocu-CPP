@@ -38,7 +38,7 @@ namespace assignment2
 	{
 		assert(vehicle != nullptr);
 
-		if (mVehiclesCount >= EDeusExMachina::MAX_VEHICLES_COUNT)
+		if (mVehiclesCount >= eDeusExMachina::MAX_VEHICLES_COUNT)
 		{
 			return false;
 		}

@@ -19,7 +19,7 @@ namespace assignment2
 	private:
 
 	private:
-		enum EMotorcycle
+		enum eMotorcycle
 		{
 			MAX_PASSENGERS_COUNT = 2,
 			MAX_MOVE_TIME = 5,

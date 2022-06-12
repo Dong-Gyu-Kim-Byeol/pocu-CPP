@@ -10,7 +10,7 @@ namespace assignment2
 {
 	const double Airplane::EULER_NUMBER = 2.71828182845904523536028747135266249775724709369995;
 
-	Airplane::Airplane(unsigned int maxPassengersCount):
+	Airplane::Airplane(unsigned int maxPassengersCount) :
 		Vehicle(maxPassengersCount)
 	{
 	}
@@ -21,13 +21,13 @@ namespace assignment2
 
 	void Airplane::Move()
 	{
-		if (mMovedTime >= EAirplane::MAX_MOVE_TIME && mRestedTime >= EAirplane::MAX_REST_TIME)
+		if (mMovedTime >= eAirplane::MAX_MOVE_TIME && mRestedTime >= eAirplane::MAX_REST_TIME)
 		{
 			mMovedTime = 0;
 			mRestedTime = 0;
 		}
 
-		if (mMovedTime >= EAirplane::MAX_MOVE_TIME)
+		if (mMovedTime >= eAirplane::MAX_MOVE_TIME)
 		{
 			++mRestedTime;
 			return;
@@ -48,9 +48,9 @@ namespace assignment2
 	{
 		// 200 * EULER_NUMBER ^ ((-x + 800) / 500)
 
-		const double weight = static_cast<double>(GetTotalPassengerWeight());		
-		const double speed = 200.0 * std::pow(EULER_NUMBER, ((-weight + 800.0) / 500.0));
-		return static_cast<unsigned int>(std::round(speed));
+		const double weight = static_cast<double>(GetTotalPassengerWeight());
+		const double speed = std::round(200.0 * std::pow(EULER_NUMBER, ((-weight + 800.0) / 500.0)));
+		return static_cast<unsigned int>(speed);
 	}
 
 	unsigned int Airplane::GetDriveSpeed() const
@@ -58,8 +58,8 @@ namespace assignment2
 		// 4 * e^((-x + 400) / 70)
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
-		const double speed = 4.0 * std::pow(EULER_NUMBER, ((-weight + 400.0) / 70.0));
-		return static_cast<unsigned int>(std::round(speed));
+		const double speed = std::round(4.0 * std::pow(EULER_NUMBER, ((-weight + 400.0) / 70.0)));
+		return static_cast<unsigned int>(speed);
 	}
 
 	Boatplane Airplane::operator+(Boat& boat)

@@ -17,13 +17,13 @@ namespace assignment2
 
 	void Boatplane::Move()
 	{
-		if (mMovedTime >= EBoatplane::MAX_MOVE_TIME && mRestedTime >= EBoatplane::MAX_REST_TIME)
+		if (mMovedTime >= eBoatplane::MAX_MOVE_TIME && mRestedTime >= eBoatplane::MAX_REST_TIME)
 		{
 			mMovedTime = 0;
 			mRestedTime = 0;
 		}
 
-		if (mMovedTime >= EBoatplane::MAX_MOVE_TIME)
+		if (mMovedTime >= eBoatplane::MAX_MOVE_TIME)
 		{
 			++mRestedTime;
 			return;
@@ -45,8 +45,8 @@ namespace assignment2
 		// 150 * e ^ ((-x + 500) / 300)
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
-		const double speed = 150.0 * std::pow(Airplane::EULER_NUMBER, ((-weight + 500.0) / 300.0));
-		return static_cast<unsigned int>(std::round(speed));
+		const double speed = std::round(150.0 * std::pow(Airplane::EULER_NUMBER, ((-weight + 500.0) / 300.0)));
+		return static_cast<unsigned int>(speed);
 	}
 
 	unsigned int Boatplane::GetSailSpeed() const
@@ -54,7 +54,7 @@ namespace assignment2
 		// MAX((800 - 1.7x), 20)
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
-		const double speed = std::max(800.0 - 1.7 * weight, 20.0);
-		return static_cast<double>(std::round(speed));
+		const double speed = std::round(std::max(800.0 - 1.7 * weight, 20.0));
+		return static_cast<double>(speed);
 	}
 }
