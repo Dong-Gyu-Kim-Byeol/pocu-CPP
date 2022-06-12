@@ -98,6 +98,9 @@
     <ClInclude Include="UBoat.h" />
     <ClInclude Include="Vehicle.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="slack.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
