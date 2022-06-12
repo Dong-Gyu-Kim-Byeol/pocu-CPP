@@ -46,7 +46,8 @@ namespace assignment2
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
 		const double speed = std::round(150.0 * std::pow(Airplane::EULER_NUMBER, ((-weight + 500.0) / 300.0)));
-		return static_cast<unsigned int>(speed);
+		const unsigned int iSpeed = static_cast<unsigned int>(speed);
+		return iSpeed;
 	}
 
 	unsigned int Boatplane::GetSailSpeed() const
@@ -55,6 +56,8 @@ namespace assignment2
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
 		const double speed = std::round(std::max(800.0 - 1.7 * weight, 20.0));
-		return static_cast<double>(speed);
+
+		const unsigned int iSpeed = static_cast<unsigned int>(speed);
+		return iSpeed;
 	}
 }

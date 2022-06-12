@@ -44,7 +44,10 @@ namespace assignment2
 		// MAX((-(x/15)^3 + 2x + 400), 0)
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
-		const double speed = std::max((std::pow(-(weight / 15.0), 3.0) + 2.0 * weight + 400.0), 0.0);
-		return static_cast<double>(std::round(speed));
+		
+		double speed = std::max((std::pow(-(weight / 15.0), 3.0) + 2.0 * weight + 400.0), 0.0);
+		speed = std::round(speed);
+
+		return static_cast<double>(speed);
 	}
 }

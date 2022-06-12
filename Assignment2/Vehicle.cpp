@@ -32,9 +32,9 @@ namespace assignment2
 		mPassengers{ 0, },
 		mTotalPassengerWeight(0),
 
-		mMovedDistance(0),
-		mMovedTime(0),
-		mRestedTime(0)
+		mMovedDistance(other.mMovedDistance),
+		mMovedTime(other.mMovedTime),
+		mRestedTime(other.mRestedTime)
 	{
 		for (unsigned int i = 0; i < other.mPassengersCount; ++i)
 		{
@@ -54,9 +54,9 @@ namespace assignment2
 		this->mPassengersCount = 0;
 		this->mTotalPassengerWeight = 0;
 
-		this->mMovedDistance = 0;
-		this->mMovedTime = 0;
-		this->mRestedTime = 0;
+		this->mMovedDistance = rhs.mMovedDistance;
+		this->mMovedTime = rhs.mMovedTime;
+		this->mRestedTime = rhs.mRestedTime;
 
 		for (unsigned int i = 0; i < rhs.mPassengersCount; ++i)
 		{

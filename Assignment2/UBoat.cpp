@@ -44,7 +44,7 @@ namespace assignment2
 		// 500 * log((x + 150)/150) + 30
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
-		const double speed = std::round(500.0 * std::log10((weight + 150.0) / 150.0) + 30.0);
+		const double speed = std::round(500.0 * std::log((weight + 150.0) / 150.0) + 30.0);
 		return static_cast<unsigned int>(speed);
 	}
 
