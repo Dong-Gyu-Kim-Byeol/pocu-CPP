@@ -75,7 +75,11 @@ namespace assignment2
 			}
 
 			const Person* newPerson = new Person(*person);
-			bp.AddPassenger(newPerson);
+			if (!bp.AddPassenger(newPerson))
+			{
+				delete newPerson;
+				newPerson = nullptr;
+			}
 
 			this->RemovePassenger(0);
 		}
@@ -89,7 +93,11 @@ namespace assignment2
 			}
 
 			const Person* newPerson = new Person(*person);
-			bp.AddPassenger(newPerson);
+			if (!bp.AddPassenger(newPerson))
+			{
+				delete newPerson;
+				newPerson = nullptr;
+			}
 
 			boat.RemovePassenger(0);
 		}

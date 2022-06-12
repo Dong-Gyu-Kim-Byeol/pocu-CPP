@@ -39,7 +39,11 @@ namespace assignment2
 		for (unsigned int i = 0; i < other.mPassengersCount; ++i)
 		{
 			const Person* newPerson = new Person(*other.mPassengers[i]);
-			this->AddPassenger(newPerson);
+			if (!this->AddPassenger(newPerson))
+			{
+				delete newPerson;
+				newPerson = nullptr;
+			}
 		}
 	}
 
@@ -61,7 +65,11 @@ namespace assignment2
 		for (unsigned int i = 0; i < rhs.mPassengersCount; ++i)
 		{
 			const Person* newPerson = new Person(*rhs.mPassengers[i]);
-			this->AddPassenger(newPerson);
+			if (!this->AddPassenger(newPerson))
+			{
+				delete newPerson;
+				newPerson = nullptr;
+			}
 		}
 
 		return *this;

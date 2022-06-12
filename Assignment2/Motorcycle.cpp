@@ -48,7 +48,6 @@ namespace assignment2
 		double speed = std::max((std::pow(-(weight / 15.0), 3.0) + 2.0 * weight + 400.0), 0.0);
 		speed = std::round(speed);
 
-		unsigned int iSpeed = static_cast<double>(speed);
-		return iSpeed;
+		return static_cast<unsigned int>(speed);
 	}
 }

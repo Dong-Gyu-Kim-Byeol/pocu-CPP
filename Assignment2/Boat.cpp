@@ -51,8 +51,7 @@ namespace assignment2
 		double speed = std::max(800.0 - 10.0 * weight, 20.0);
 		speed = std::round(speed);
 		
-		unsigned int iSpeed = static_cast<double>(speed);
-		return iSpeed;
+		return static_cast<unsigned int>(speed);
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)
@@ -68,7 +67,11 @@ namespace assignment2
 			}
 
 			const Person* newPerson = new Person(*person);
-			bp.AddPassenger(newPerson);
+			if (!bp.AddPassenger(newPerson))
+			{
+				delete newPerson;
+				newPerson = nullptr;
+			}
 
 			plane.RemovePassenger(0);
 		}
@@ -82,7 +85,11 @@ namespace assignment2
 			}
 
 			const Person* newPerson = new Person(*person);
-			bp.AddPassenger(newPerson);
+			if (!bp.AddPassenger(newPerson))
+			{
+				delete newPerson;
+				newPerson = nullptr;
+			}
 
 			this->RemovePassenger(0);
 		}		
