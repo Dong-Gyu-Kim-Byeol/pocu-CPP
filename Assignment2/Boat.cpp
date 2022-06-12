@@ -48,8 +48,11 @@ namespace assignment2
 		// MAX((800 - 10x), 20)
 
 		const double weight = static_cast<double>(GetTotalPassengerWeight());
-		const double speed = std::max(800.0 - 10.0 * weight, 20.0);
-		return static_cast<double>(std::round(speed));
+		double speed = std::max(800.0 - 10.0 * weight, 20.0);
+		speed = std::round(speed);
+		
+		unsigned int iSpeed = static_cast<double>(speed);
+		return iSpeed;
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)

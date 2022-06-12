@@ -21,7 +21,7 @@ namespace assignment2
 	}
 
 	Sedan::Sedan(const Sedan& other) :
-		Vehicle(eSedan::MAX_PASSENGERS_COUNT),
+		Vehicle(other),
 		mTrailerOrNull(nullptr)
 	{
 		if (other.mTrailerOrNull != nullptr)
