@@ -31,9 +31,5 @@ namespace assignment2
 			MAX_MOVE_TIME = 1,
 			MAX_REST_TIME = 3,
 		};
-
-	private:
-		Airplane(const Airplane& other) = delete;
-		void operator=(const Airplane& rhs) = delete;
 	};
 }

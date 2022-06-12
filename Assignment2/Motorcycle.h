@@ -17,8 +17,6 @@ namespace assignment2
 		virtual unsigned int GetDriveSpeed() const;
 
 	private:
-
-	private:
 		enum eMotorcycle
 		{
 			MAX_PASSENGERS_COUNT = 2,

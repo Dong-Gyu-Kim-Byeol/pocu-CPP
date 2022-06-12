@@ -18,16 +18,15 @@ namespace assignment2
 		static DeusExMachina mInstance;
 
 		DeusExMachina();
-		virtual ~DeusExMachina();
 		DeusExMachina(const DeusExMachina& other) = delete;
-		DeusExMachina& operator=(const DeusExMachina& other) = delete;
+		virtual DeusExMachina& operator=(const DeusExMachina& other) = delete;
+		virtual ~DeusExMachina();		
 
 		enum eDeusExMachina
 		{
 			MAX_VEHICLES_COUNT = 10,
 		};
 
-	private:
 		unsigned int mVehiclesCount;
 		Vehicle* mVehicles[eDeusExMachina::MAX_VEHICLES_COUNT];
 	};

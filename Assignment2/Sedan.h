@@ -13,7 +13,7 @@ namespace assignment2
 	public:
 		Sedan();
 		Sedan(const Sedan& other);
-		Sedan& operator=(const Sedan& rhs);
+		virtual Sedan& operator=(const Sedan& rhs);
 		virtual ~Sedan();
 
 		virtual void Move();
@@ -26,7 +26,6 @@ namespace assignment2
 	private:
 		unsigned int getTrailerWeight() const;
 
-	private:
 		enum eSedan
 		{
 			MAX_PASSENGERS_COUNT = 4,
@@ -36,7 +35,6 @@ namespace assignment2
 			MAX_REST_TIME_TRAILER = 2,
 		};
 
-	private:
 		const Trailer* mTrailerOrNull;
 
 	};
