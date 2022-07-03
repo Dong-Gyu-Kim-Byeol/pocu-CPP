@@ -82,8 +82,7 @@ namespace lab7
 		for (typename std::vector<T>::const_iterator it = v1.begin(); it != v1.end(); ++it)
 		{
 			const T& value = *it;
-			std::pair<std::unordered_set<T>::const_iterator, bool> insert = set.emplace(value);
-			if (insert.second)
+			if (set.emplace(value).second)
 			{
 				combined.emplace_back(value);
 			}
@@ -92,8 +91,7 @@ namespace lab7
 		for (typename std::vector<T>::const_iterator it = v2.begin(); it != v2.end(); ++it)
 		{
 			const T& value = *it;
-			std::pair<std::unordered_set<T>::const_iterator, bool> insert = set.emplace(value);
-			if (insert.second)
+			if (set.emplace(value).second)
 			{
 				combined.emplace_back(value);
 			}
@@ -129,7 +127,8 @@ namespace lab7
 	template<typename T>
 	std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 	{
-		for (typename std::vector<T>::const_iterator it = v.begin(); it != v.end(); )
+		typename std::vector<T>::const_iterator it = v.begin();
+		while (it != v.end())
 		{
 			os << *it;
 
@@ -146,7 +145,8 @@ namespace lab7
 	template <typename K, class V>
 	std::ostream& operator<<(std::ostream& os, const std::map<K, V>& m)
 	{
-		for (typename std::map<K, V>::const_iterator it = m.begin(); it != m.end(); )
+		typename std::map<K, V>::const_iterator it = m.begin();
+		while (it != m.end())
 		{
 			const K& key = it->first;
 			const V& value = it->second;
@@ -156,7 +156,7 @@ namespace lab7
 			++it;
 			if (it != m.end())
 			{
-				os << '\n';
+				os << std::endl;
 			}
 		}
 
