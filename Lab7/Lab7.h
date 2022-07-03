@@ -145,19 +145,12 @@ namespace lab7
 	template <typename K, class V>
 	std::ostream& operator<<(std::ostream& os, const std::map<K, V>& m)
 	{
-		typename std::map<K, V>::const_iterator it = m.begin();
-		while (it != m.end())
+		for (typename std::map<K, V>::const_iterator it = m.begin(); it != m.end(); ++it)
 		{
 			const K& key = it->first;
 			const V& value = it->second;
 
-			os << "{ " << key << ", " << value << " }";
-
-			++it;
-			if (it != m.end())
-			{
-				os << std::endl;
-			}
+			os << "{ " << key << ", " << value << " }" << std::endl;
 		}
 
 		return os;
