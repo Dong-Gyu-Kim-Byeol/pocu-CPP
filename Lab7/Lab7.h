@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <unordered_set>
+#include <cmath>
 
 namespace lab7
 {
