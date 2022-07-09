@@ -17,7 +17,7 @@ namespace lab8
 		bool Remove(const bool b);
 		bool Get(const size_t index);
 		bool operator[](const size_t index);
-		size_t GetIndex(const bool b);
+		int GetIndex(const bool b);
 		size_t GetSize();
 		size_t GetCapacity();
 
@@ -99,7 +99,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	size_t FixedVector<bool, N>::GetIndex(const bool b)
+	int FixedVector<bool, N>::GetIndex(const bool b)
 	{
 		for (size_t i = 0; i < mSize; ++i)
 		{
@@ -109,7 +109,7 @@ namespace lab8
 				continue;
 			}
 
-			return i;
+			return static_cast<int>(i);
 		}
 
 		return -1;
