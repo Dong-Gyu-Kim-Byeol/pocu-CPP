@@ -63,7 +63,6 @@ namespace lab8
 	template <size_t N>
 	bool FixedVector<bool, N>::Remove(const bool b)
 	{
-		// const size_t arraySize = getArraySize();
 		for (size_t i = 0; i < mSize; ++i)
 		{
 			const bool bBit = getBit(i);
