@@ -3,13 +3,13 @@
 namespace lab8
 {
 	template <typename T, size_t N>
-	class FixedVector
+	class FixedVector final
 	{
 	public:
 		FixedVector();
-		FixedVector(const FixedVector& other) = default;
-		FixedVector& operator=(const FixedVector& rhs) = default;
-		virtual ~FixedVector() = default;
+		//FixedVector(const FixedVector& other) = default;
+		//FixedVector& operator=(const FixedVector& rhs) = default;
+		//~FixedVector() = default;
 
 		bool Add(const T& t);
 		bool Remove(const T& t);
@@ -26,6 +26,7 @@ namespace lab8
 
 	template <typename T, size_t N>
 	FixedVector<T, N>::FixedVector() :
+		mArray{ 0 },
 		mSize(0)
 	{
 	}
