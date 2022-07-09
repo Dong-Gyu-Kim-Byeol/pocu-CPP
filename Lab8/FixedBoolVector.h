@@ -1,7 +1,6 @@
 #pragma once
 
 #include "FixedVector.h"
-#include <typeinfo>
 
 namespace lab8
 {
@@ -32,10 +31,10 @@ namespace lab8
 
 		enum
 		{
-			SLOT_BIT_SIZE = sizeof(uint32_t) * 8,
+			SLOT_BIT_SIZE = sizeof(unsigned int) * 8,
 			CAPACITY = (N / SLOT_BIT_SIZE) + (N % SLOT_BIT_SIZE == 0 ? 0 : 1),
 		};
-		uint32_t mArray[CAPACITY];
+		unsigned int mArray[CAPACITY];
 		size_t mSize;
 
 	};
@@ -155,7 +154,7 @@ namespace lab8
 		const size_t arrayIndex = getArrayIndex(index);
 		const size_t bitIndex = getBitIndex(index);
 
-		const uint32_t val = mArray[arrayIndex] & 1 << bitIndex;
+		const unsigned int val = mArray[arrayIndex] & 1 << bitIndex;
 		const bool bBit = val == 0 ? false : true;
 		return bBit;
 	}
