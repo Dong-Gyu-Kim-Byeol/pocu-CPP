@@ -2,7 +2,6 @@
 
 #include "FixedVector.h"
 #include <typeinfo>
-#include <math.h>
 
 namespace lab8
 {

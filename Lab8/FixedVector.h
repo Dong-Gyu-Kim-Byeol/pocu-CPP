@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 namespace lab8
 {
 	template <typename T, size_t N>
@@ -50,7 +48,7 @@ namespace lab8
 	{
 		for (size_t i = 0; i < mSize; ++i)
 		{
-			if (mArray[i] != t)
+			if (!(mArray[i] == t))
 			{
 				continue;
 			}
@@ -87,7 +85,7 @@ namespace lab8
 	{
 		for (size_t i = 0; i < mSize; ++i)
 		{
-			if (mArray[i] != t)
+			if (!(mArray[i] == t))
 			{
 				continue;
 			}
