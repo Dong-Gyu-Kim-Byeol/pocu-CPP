@@ -26,7 +26,7 @@ namespace lab8
 
 	template <typename T, size_t N>
 	FixedVector<T, N>::FixedVector() :
-		mArray{ 0 },
+		mArray{ 0, },
 		mSize(0)
 	{
 	}

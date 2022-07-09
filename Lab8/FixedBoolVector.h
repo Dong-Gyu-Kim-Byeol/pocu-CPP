@@ -16,8 +16,8 @@ namespace lab8
 
 		bool Add(const bool b);
 		bool Remove(const bool b);
-		const bool& Get(const size_t index);
-		const bool& operator[](const size_t index);
+		bool Get(const size_t index);
+		bool operator[](const size_t index);
 		size_t GetIndex(const bool b);
 		size_t GetSize();
 		size_t GetCapacity();
@@ -42,7 +42,7 @@ namespace lab8
 
 	template <size_t N>
 	FixedVector<bool, N>::FixedVector() :
-		mArray{ 0 },
+		mArray{ 0, },
 		mSize(0)
 	{
 	}
@@ -89,13 +89,13 @@ namespace lab8
 	}
 
 	template <size_t N>
-	const bool& FixedVector<bool, N>::Get(const size_t index)
+	bool FixedVector<bool, N>::Get(const size_t index)
 	{
 		return getBit(index);
 	}
 
 	template <size_t N>
-	const bool& FixedVector<bool, N>::operator[](const size_t index)
+	bool FixedVector<bool, N>::operator[](const size_t index)
 	{
 		return getBit(index);
 	}
@@ -156,7 +156,8 @@ namespace lab8
 		const size_t arrayIndex = getArrayIndex(index);
 		const size_t bitIndex = getBitIndex(index);
 
-		const bool bBit = mArray[arrayIndex] & 1 << bitIndex;
+		const uint32_t val = mArray[arrayIndex] & 1 << bitIndex;
+		const bool bBit = val == 0 ? false : true;
 		return bBit;
 	}
 
