@@ -300,6 +300,7 @@ void test3()
 int main()
 {
 	test1();
+	test2();
 	test3();
 
 	int i1 = 23;
@@ -309,7 +310,7 @@ int main()
 	int i5 = 70;
 
 	FixedVector<int, 33> iv;
-	FixedVector<int, 33> ivv = iv;
+	FixedVector<int, 33> ivv;
 
 	assert(iv.GetCapacity() == 33);
 
@@ -317,6 +318,8 @@ int main()
 	iv.Add(i2);
 	iv.Add(i3);
 	iv.Add(i4);
+
+	ivv = iv;
 
 	assert(iv.GetSize() == 4);
 	assert(iv.GetIndex(i2) == 1);
