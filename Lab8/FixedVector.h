@@ -28,6 +28,7 @@ namespace lab8
 	FixedVector<T, N>::FixedVector() :
 		mSize(0)
 	{
+		memset(mArray, 0, sizeof(mArray));
 	}
 
 	template <typename T, size_t N>

@@ -6,7 +6,7 @@
 
 using namespace lab8;
 
-int test1()
+void test1()
 {
 	int integerArray1[] = { 23, 25, 10, -4, 70 };
 	enum { INTEGER_VECTOR1_SIZE = 4 };
@@ -137,8 +137,6 @@ int test1()
 	assert(boolVector2.GetSize() == 65);
 	assert(boolVector2.GetIndex(true) == -1);
 	std::cout << "Test FixedBoolVector GetIndex(): PASS" << std::endl;
-
-	return 0;
 }
 
 void test2()
