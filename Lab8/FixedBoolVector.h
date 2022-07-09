@@ -1,7 +1,5 @@
 #pragma once
 
-#include "FixedVector.h"
-
 namespace lab8
 {
 	template <size_t N>
