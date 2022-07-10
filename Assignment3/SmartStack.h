@@ -101,24 +101,56 @@ namespace assignment3
 	template <typename T>
 	T SmartStack<T>::GetMax() const
 	{
-		if (GetCount() == 0)
+		if (mMaxStack.size() == 0)
 		{
 			const T max = std::numeric_limits<T>::lowest();
 			return max;
 		}
 
 		return mMaxStack.top();
+
+		/*std::stack<T> stack(mNumStack);
+		T max = std::numeric_limits<T>::lowest();
+		while (!stack.empty())
+		{
+			const T number = stack.top();
+
+			if (max < number)
+			{
+				max = number;
+			}
+
+			stack.pop();
+		}
+
+		return max;*/
 	}
 
 	template <typename T>
 	T SmartStack<T>::GetMin() const
 	{
-		if (GetCount() == 0)
+		if (mMinStack.size() == 0)
 		{
 			return std::numeric_limits<T>::max();
 		}
 
 		return mMinStack.top();
+
+		//std::stack<T> stack(mNumStack);
+		//T min = std::numeric_limits<T>::max();
+		//while (!stack.empty())
+		//{
+		//	const T number = stack.top();
+
+		//	if (min > number)
+		//	{
+		//		min = number;
+		//	}
+
+		//	stack.pop();
+		//}
+
+		//return min;
 	}
 
 	template <typename T>
