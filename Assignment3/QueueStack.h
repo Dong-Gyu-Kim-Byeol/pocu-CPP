@@ -171,7 +171,7 @@ namespace assignment3
 	template <typename T>
 	T QueueStack<T>::GetSum() const
 	{
-		return static_cast<double>(mSum);
+		return static_cast<T>(mSum);
 	}
 
 	template <typename T>
