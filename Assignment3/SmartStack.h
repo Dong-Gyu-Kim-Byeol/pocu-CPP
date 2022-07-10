@@ -32,14 +32,14 @@ namespace assignment3
 		std::stack<T> mMaxStack;
 		std::stack<T> mMinStack;
 
-		T mSum;
-		T mPowSum;
+		double mSum;
+		double mPowSum;
 	};
 
 	template <typename T>
 	SmartStack<T>::SmartStack() :
-		mSum(0),
-		mPowSum(0)
+		mSum(0.0),
+		mPowSum(0.0)
 	{
 	}
 
@@ -64,8 +64,8 @@ namespace assignment3
 
 		mNumStack.emplace(number);
 
-		mSum += number;
-		mPowSum += number * number;
+		mSum += static_cast<double>(number);
+		mPowSum += static_cast<double>(number) * static_cast<double>(number);
 	}
 
 	template <typename T>
@@ -85,8 +85,8 @@ namespace assignment3
 
 		mNumStack.pop();
 
-		mSum -= number;
-		mPowSum -= number * number;
+		mSum -= static_cast<double>(number);
+		mPowSum -= static_cast<double>(number) * static_cast<double>(number);
 
 		return number;
 	}
@@ -108,22 +108,6 @@ namespace assignment3
 		}
 
 		return mMaxStack.top();
-
-		/*std::stack<T> stack(mNumStack);
-		T max = std::numeric_limits<T>::lowest();
-		while (!stack.empty())
-		{
-			const T number = stack.top();
-
-			if (max < number)
-			{
-				max = number;
-			}
-
-			stack.pop();
-		}
-
-		return max;*/
 	}
 
 	template <typename T>
@@ -135,28 +119,12 @@ namespace assignment3
 		}
 
 		return mMinStack.top();
-
-		/*std::stack<T> stack(mNumStack);
-		T min = std::numeric_limits<T>::max();
-		while (!stack.empty())
-		{
-			const T number = stack.top();
-
-			if (min > number)
-			{
-				min = number;
-			}
-
-			stack.pop();
-		}
-
-		return min;*/
 	}
 
 	template <typename T>
 	T SmartStack<T>::GetSum() const
 	{
-		return mSum;
+		return static_cast<T>(mSum);
 	}
 
 	template <typename T>
@@ -167,7 +135,7 @@ namespace assignment3
 			return 0.0;
 		}
 
-		const double average = static_cast<double>(mSum) / static_cast<double>(GetCount());
+		const double average = mSum / static_cast<double>(GetCount());
 		return average;
 	}
 
@@ -180,7 +148,7 @@ namespace assignment3
 		}
 
 		const double average = GetAverage();
-		const double variance = static_cast<double>(mPowSum) / static_cast<double>(GetCount()) - average * average;
+		const double variance = mPowSum / static_cast<double>(GetCount()) - average * average;
 		return variance;
 	}
 

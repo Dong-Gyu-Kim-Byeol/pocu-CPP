@@ -30,14 +30,14 @@ namespace assignment3
 	private:
 		std::queue<T> mNumQueue;
 
-		T mSum;
-		T mPowSum;
+		double mSum;
+		double mPowSum;
 	};
 
 	template <typename T>
 	SmartQueue<T>::SmartQueue() :
-		mSum(0),
-		mPowSum(0)
+		mSum(0.0),
+		mPowSum(0.0)
 	{
 	}
 
@@ -52,8 +52,8 @@ namespace assignment3
 	{
 		mNumQueue.emplace(number);
 
-		mSum += number;
-		mPowSum += number * number;
+		mSum += static_cast<double>(number);
+		mPowSum += static_cast<double>(number) * static_cast<double>(number);
 	}
 
 	template <typename T>
@@ -63,8 +63,8 @@ namespace assignment3
 
 		mNumQueue.pop();
 
-		mSum -= number;
-		mPowSum -= number * number;
+		mSum -= static_cast<double>(number);
+		mPowSum -= static_cast<double>(number) * static_cast<double>(number);
 
 		return number;
 	}
@@ -119,7 +119,7 @@ namespace assignment3
 	template <typename T>
 	T SmartQueue<T>::GetSum() const
 	{
-		return mSum;
+		return static_cast<T>(mSum);
 	}
 
 	template <typename T>
@@ -130,7 +130,7 @@ namespace assignment3
 			return 0.0;
 		}
 
-		const double average = static_cast<double>(mSum) / static_cast<double>(GetCount());
+		const double average = mSum / static_cast<double>(GetCount());
 		return average;
 	}
 
@@ -143,7 +143,7 @@ namespace assignment3
 		}
 
 		const double average = GetAverage();
-		const double variance = static_cast<double>(mPowSum) / static_cast<double>(GetCount()) - average * average;
+		const double variance = mPowSum / static_cast<double>(GetCount()) - average * average;
 		return variance;
 	}
 
