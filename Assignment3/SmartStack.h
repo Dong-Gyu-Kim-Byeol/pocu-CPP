@@ -29,8 +29,8 @@ namespace assignment3
 
 	private:
 		std::stack<T> mNumStack;
-		std::stack<T> mMaxStack;
-		std::stack<T> mMinStack;
+		/*std::stack<T> mMaxStack;
+		std::stack<T> mMinStack;*/
 
 		T mSum;
 		T mPowSum;
@@ -52,7 +52,7 @@ namespace assignment3
 	template <typename T>
 	void SmartStack<T>::Push(const T number)
 	{
-		if (GetMax() < number)
+		/*if (GetMax() < number)
 		{
 			mMaxStack.emplace(number);
 		}
@@ -60,7 +60,7 @@ namespace assignment3
 		if (GetMin() > number)
 		{
 			mMinStack.emplace(number);
-		}
+		}*/
 
 		mNumStack.emplace(number);
 
@@ -73,7 +73,7 @@ namespace assignment3
 	{
 		const T number = mNumStack.top();
 
-		if (GetMax() == number)
+		/*if (GetMax() == number)
 		{
 			mMaxStack.pop();
 		}
@@ -81,7 +81,7 @@ namespace assignment3
 		if (GetMin() == number)
 		{
 			mMinStack.pop();
-		}
+		}*/
 
 		mNumStack.pop();
 
@@ -101,15 +101,15 @@ namespace assignment3
 	template <typename T>
 	T SmartStack<T>::GetMax() const
 	{
-		if (mMaxStack.size() == 0)
+		/*if (mMaxStack.size() == 0)
 		{
 			const T max = std::numeric_limits<T>::lowest();
 			return max;
 		}
 
-		return mMaxStack.top();
+		return mMaxStack.top();*/
 
-		/*std::stack<T> stack(mNumStack);
+		std::stack<T> stack(mNumStack);
 		T max = std::numeric_limits<T>::lowest();
 		while (!stack.empty())
 		{
@@ -123,34 +123,34 @@ namespace assignment3
 			stack.pop();
 		}
 
-		return max;*/
+		return max;
 	}
 
 	template <typename T>
 	T SmartStack<T>::GetMin() const
 	{
-		if (mMinStack.size() == 0)
+		/*if (mMinStack.size() == 0)
 		{
 			return std::numeric_limits<T>::max();
 		}
 
-		return mMinStack.top();
+		return mMinStack.top();*/
 
-		//std::stack<T> stack(mNumStack);
-		//T min = std::numeric_limits<T>::max();
-		//while (!stack.empty())
-		//{
-		//	const T number = stack.top();
+		std::stack<T> stack(mNumStack);
+		T min = std::numeric_limits<T>::max();
+		while (!stack.empty())
+		{
+			const T number = stack.top();
 
-		//	if (min > number)
-		//	{
-		//		min = number;
-		//	}
+			if (min > number)
+			{
+				min = number;
+			}
 
-		//	stack.pop();
-		//}
+			stack.pop();
+		}
 
-		//return min;
+		return min;
 	}
 
 	template <typename T>

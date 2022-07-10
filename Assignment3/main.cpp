@@ -41,7 +41,6 @@ void test1()
 	assert(popped2 == -12.4);
 }
 
-
 void TestSmartStack()
 {
 	const double EPSILON = 0.0009765625;
@@ -521,11 +520,11 @@ void TestMinMaxWhenEmpty()
 
 int main()
 {
-	test1();
+	/*test1();
 	TestSmartStack();
 	TestSmartQueue();
 	TestQueueStack();
-	TestMinMaxWhenEmpty();
+	TestMinMaxWhenEmpty();*/
 
 
 	SmartStack<float> ss;
