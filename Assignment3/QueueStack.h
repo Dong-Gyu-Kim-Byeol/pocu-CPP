@@ -35,7 +35,7 @@ namespace assignment3
 	template <typename T>
 	QueueStack<T>::QueueStack(const unsigned int maxStackSize) :
 		mMaxStackSize(maxStackSize),
-		mSum(0)
+		mSum(0.0)
 	{
 	}
 
