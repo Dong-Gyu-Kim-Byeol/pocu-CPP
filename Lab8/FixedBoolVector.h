@@ -15,18 +15,18 @@ namespace lab8
 
 		bool Add(const bool b);
 		bool Remove(const bool b);
-		bool Get(const size_t index);
+		bool Get(const size_t index) const;
 		bool operator[](const size_t index);
-		int GetIndex(const bool b);
-		size_t GetSize();
-		size_t GetCapacity();
+		int GetIndex(const bool b) const;
+		size_t GetSize() const;
+		size_t GetCapacity() const;
 
 	private:
-		size_t getArraySize();
-		size_t getArrayIndex(const size_t index);
-		size_t getBitIndex(const size_t index);
+		size_t getArraySize() const;
+		size_t getArrayIndex(const size_t index) const;
+		size_t getBitIndex(const size_t index) const;
 
-		bool getBit(const size_t index);
+		bool getBit(const size_t index) const;
 		void setBit(const size_t index, const bool b);
 
 		enum
@@ -87,7 +87,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::Get(const size_t index)
+	bool FixedVector<bool, N>::Get(const size_t index) const
 	{
 		return getBit(index);
 	}
@@ -99,7 +99,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	int FixedVector<bool, N>::GetIndex(const bool b)
+	int FixedVector<bool, N>::GetIndex(const bool b) const
 	{
 		for (size_t i = 0; i < mSize; ++i)
 		{
@@ -116,40 +116,40 @@ namespace lab8
 	}
 
 	template <size_t N>
-	size_t FixedVector<bool, N>::GetSize()
+	size_t FixedVector<bool, N>::GetSize() const
 	{
 		return mSize;
 	}
 
 	template <size_t N>
-	size_t FixedVector<bool, N>::GetCapacity()
+	size_t FixedVector<bool, N>::GetCapacity() const
 	{
 		return N;
 	}
 
 	template <size_t N>
-	size_t FixedVector<bool, N>::getArrayIndex(const size_t index)
+	size_t FixedVector<bool, N>::getArrayIndex(const size_t index) const
 	{
 		const size_t arrayIndex = index / SLOT_BIT_SIZE;
 		return arrayIndex;
 	}
 
 	template <size_t N>
-	size_t FixedVector<bool, N>::getArraySize()
+	size_t FixedVector<bool, N>::getArraySize() const
 	{
 		const size_t arraySize = (mSize / SLOT_BIT_SIZE) + (mSize % SLOT_BIT_SIZE == 0 ? 0 : 1);
 		return arraySize;
 	}
 
 	template <size_t N>
-	size_t FixedVector<bool, N>::getBitIndex(const size_t index)
+	size_t FixedVector<bool, N>::getBitIndex(const size_t index) const
 	{
 		const size_t arrayIndex = index % SLOT_BIT_SIZE;
 		return arrayIndex;
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::getBit(const size_t index)
+	bool FixedVector<bool, N>::getBit(const size_t index) const
 	{
 		const size_t arrayIndex = getArrayIndex(index);
 		const size_t bitIndex = getBitIndex(index);
