@@ -520,11 +520,11 @@ void TestMinMaxWhenEmpty()
 
 int main()
 {
-	/*test1();
+	test1();
 	TestSmartStack();
 	TestSmartQueue();
 	TestQueueStack();
-	TestMinMaxWhenEmpty();*/
+	TestMinMaxWhenEmpty();
 
 
 	SmartStack<float> ss;

@@ -44,59 +44,114 @@ namespace assignment3
 	template <typename T>
 	unsigned int SmartQueue<T>::GetCount() const
 	{
-		return 0;
+		return static_cast<unsigned int>(mNumQueue.size());
 	}
 
 	template <typename T>
 	void SmartQueue<T>::Enqueue(const T number)
 	{
+		mNumQueue.emplace(number);
+
+		mSum += number;
+		mPowSum += number * number;
 	}
 
 	template <typename T>
 	T SmartQueue<T>::Dequeue()
 	{
-		return 0;
+		const T number = mNumQueue.front();
+
+		mNumQueue.pop();
+
+		mSum -= number;
+		mPowSum -= number * number;
+
+		return number;
 	}
 
 	template <typename T>
 	T SmartQueue<T>::Peek() const
 	{
-		return 0;
+		const T number = mNumQueue.front();
+		return number;
 	}
 
 	template <typename T>
 	T SmartQueue<T>::GetMax() const
 	{
-		return 0;
+		std::queue<T> queue(mNumQueue);
+		T max = std::numeric_limits<T>::lowest();
+		while (!queue.empty())
+		{
+			const T number = queue.front();
+
+			if (max < number)
+			{
+				max = number;
+			}
+
+			queue.pop();
+		}
+
+		return max;
 	}
 
 	template <typename T>
 	T SmartQueue<T>::GetMin() const
 	{
-		return 0;
+		std::queue<T> queue(mNumQueue);
+		T min = std::numeric_limits<T>::max();
+		while (!queue.empty())
+		{
+			const T number = queue.front();
+
+			if (min > number)
+			{
+				min = number;
+			}
+
+			queue.pop();
+		}
+
+		return min;
 	}
 
 	template <typename T>
 	T SmartQueue<T>::GetSum() const
 	{
-		return 0;
+		return mSum;
 	}
 
 	template <typename T>
 	double SmartQueue<T>::GetAverage() const
 	{
-		return 0;
+		if (GetCount() == 0)
+		{
+			return 0.0;
+		}
+
+		const double average = static_cast<double>(mSum) / static_cast<double>(GetCount());
+		return average;
 	}
 
 	template <typename T>
 	double SmartQueue<T>::GetVariance() const
 	{
-		return 0;
+		if (GetCount() == 0)
+		{
+			return 0.0;
+		}
+
+		const double average = GetAverage();
+		const double variance = static_cast<double>(mPowSum) / static_cast<double>(GetCount()) - average * average;
+		return variance;
 	}
 
 	template <typename T>
 	double SmartQueue<T>::GetStandardDeviation() const
 	{
-		return 0;
+		const double variance = GetVariance();
+		const double standardDeviation = std::sqrt(variance);
+		return standardDeviation;
 	}
 }
