@@ -38,11 +38,5 @@
     <ClInclude Include="CycleQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FixedBoolVector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FixedVector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

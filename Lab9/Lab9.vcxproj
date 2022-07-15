@@ -76,8 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CycleQueue.h" />
-    <ClInclude Include="FixedBoolVector.h" />
-    <ClInclude Include="FixedVector.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IceCube.h" />
     <ClInclude Include="ObjectPool.h" />
