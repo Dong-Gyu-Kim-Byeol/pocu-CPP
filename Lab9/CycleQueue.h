@@ -13,16 +13,16 @@ namespace lab9
 		CycleQueue(const CycleQueue& other) = default;
 		CycleQueue& operator=(const CycleQueue& rhs) = default;
 
-		size_t Size() const;
-		size_t Capacity() const;
+		size_t GetSize() const;
+		size_t GetCapacity() const;
 		bool Enqueue(const T& value);
 		T Dequeue();
 
 		~CycleQueue() = default;
 
 	private:
-		size_t arrayCapacity() const;
-		size_t nextIndex(const size_t nowIndex) const;
+		size_t getArrayCapacity() const;
+		size_t calculateNextIndex(const size_t nowIndex) const;
 
 		size_t mCapacity;
 		std::vector<T> mArray;
@@ -42,13 +42,13 @@ namespace lab9
 	}
 
 	template <typename T>
-	size_t CycleQueue<T>::Size() const
+	size_t CycleQueue<T>::GetSize() const
 	{
 		return mSize;
 	}
 
 	template <typename T>
-	size_t CycleQueue<T>::Capacity() const
+	size_t CycleQueue<T>::GetCapacity() const
 	{
 		return mCapacity;
 	}
@@ -56,13 +56,13 @@ namespace lab9
 	template <typename T>
 	bool CycleQueue<T>::Enqueue(const T& value)
 	{
-		if (nextIndex(mEmptyBack) == mFront)
+		if (calculateNextIndex(mEmptyBack) == mFront)
 		{
 			return false;
 		}
 
 		mArray[mEmptyBack] = value;
-		mEmptyBack = nextIndex(mEmptyBack);
+		mEmptyBack = calculateNextIndex(mEmptyBack);
 		++mSize;
 		return value;
 	}
@@ -73,21 +73,21 @@ namespace lab9
 		assert(mFront != mEmptyBack);
 
 		T value = mArray[mFront];
-		mFront = nextIndex(mFront);
+		mFront = calculateNextIndex(mFront);
 		--mSize;
 
 		return value;
 	}
 
 	template <typename T>
-	size_t CycleQueue<T>::arrayCapacity() const
+	size_t CycleQueue<T>::getArrayCapacity() const
 	{
 		return mArray.capacity();
 	}
 
 	template <typename T>
-	size_t CycleQueue<T>::nextIndex(const size_t nowIndex) const
+	size_t CycleQueue<T>::calculateNextIndex(const size_t nowIndex) const
 	{
-		return (nowIndex + 1) % arrayCapacity();
+		return (nowIndex + 1) % getArrayCapacity();
 	}
 }

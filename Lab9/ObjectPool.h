@@ -15,7 +15,7 @@ namespace lab9
 		ObjectPool(const ObjectPool& other) = delete;
 		ObjectPool& operator=(const ObjectPool& rhs) = delete;
 
-		~ObjectPool() = default;
+		~ObjectPool();
 
 		size_t GetFreeObjectCount() const;
 		size_t GetMaxFreeObjectCount() const;
@@ -34,21 +34,32 @@ namespace lab9
 	}
 
 	template <typename T>
+	ObjectPool<T>::~ObjectPool()
+	{
+		while (mCycleQueue.GetSize() != 0)
+		{
+			T* object = mCycleQueue.Dequeue();
+			delete object;
+			object = nullptr;
+		}
+	}
+
+	template <typename T>
 	size_t ObjectPool<T>::GetFreeObjectCount() const
 	{
-		return mCycleQueue.Size();
+		return mCycleQueue.GetSize();
 	}
 
 	template <typename T>
 	size_t ObjectPool<T>::GetMaxFreeObjectCount() const
 	{
-		return mCycleQueue.Capacity();
+		return mCycleQueue.GetCapacity();
 	}
 
 	template <typename T>
 	T* ObjectPool<T>::Get()
 	{
-		if (mCycleQueue.Size() == 0)
+		if (mCycleQueue.GetSize() == 0)
 		{
 			T* newObject = new T();
 			return newObject;
@@ -61,7 +72,7 @@ namespace lab9
 	template <typename T>
 	void ObjectPool<T>::Return(T* p)
 	{
-		if (mCycleQueue.Size() == mCycleQueue.Capacity())
+		if (mCycleQueue.GetSize() == mCycleQueue.GetCapacity())
 		{
 			delete p;
 			p = nullptr;
