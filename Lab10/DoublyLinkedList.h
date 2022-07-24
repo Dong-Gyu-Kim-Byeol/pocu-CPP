@@ -120,7 +120,7 @@ namespace lab10
 				{
 					mHead = nextNode;
 				}
-				
+
 				--mLength;
 				return true;
 			}
