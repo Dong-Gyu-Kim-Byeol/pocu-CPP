@@ -33,9 +33,11 @@ namespace assignment4
 		static std::vector<T> TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode);
 
 	private:
+		bool deletion(std::shared_ptr<TreeNode<T>> root, const T& data);
 		std::shared_ptr<TreeNode<T>> getMaxNode(std::shared_ptr<TreeNode<T>> root);
-		std::shared_ptr<TreeNode<T>> getMinNode(std::shared_ptr<TreeNode<T>> root);
-		void deleteChild(std::shared_ptr<TreeNode<T>>& node, std::shared_ptr<TreeNode<T>>& child);
+		/*std::shared_ptr<TreeNode<T>> getMinNode(std::shared_ptr<TreeNode<T>> root);*/
+
+		/*void deleteChild(std::shared_ptr<TreeNode<T>>& node, std::shared_ptr<TreeNode<T>>& child);*/
 
 		static void traverseInOrder(std::vector<T>& out, const std::shared_ptr<TreeNode<T>> startNode);
 
@@ -52,7 +54,7 @@ namespace assignment4
 		}
 
 		std::shared_ptr<TreeNode<T>> root = mRoot;
-		while (true)
+		while (root != nullptr)
 		{
 			if (*(root->Data) < *data)
 			{
@@ -119,43 +121,87 @@ namespace assignment4
 	template<typename T>
 	bool BinarySearchTree<T>::Delete(const T& data)
 	{
-		std::shared_ptr<TreeNode<T>> root = mRoot;
+		return true;
+	}
+
+	template<typename T>
+	bool BinarySearchTree<T>::deletion(std::shared_ptr<TreeNode<T>> root, const T& data)
+	{
 		while (root != nullptr)
 		{
 			if (*(root->Data) == data)
 			{
-				if (root->Left == nullptr && root->Right == nullptr)
+				std::shared_ptr<TreeNode<T>> parent = root->Parent.lock();
+				if (parent == nullptr)
 				{
-					std::shared_ptr<TreeNode<T>> parent = root->Parent.lock();
-					if (parent == nullptr)
+					assert(root == mRoot);
+
+					if (root->Right == nullptr && root->Left == nullptr)
 					{
-						assert(root == mRoot);
 						mRoot = nullptr;
+					}
+					else if (root->Right == nullptr)
+					{
+						mRoot = root->Left;
+					}
+					else if (root->Left == nullptr)
+					{
+						mRoot = root->Right;
 					}
 					else
 					{
-						deleteChild(parent, root);
+						std::shared_ptr<TreeNode<T>> maxNode = getMaxNode(root->Left);
+						root->Data.swap(maxNode->Data);
+
+						deletion(maxNode, data);
+					}
+
+					return true;
+				}
+
+				if (root->Right == nullptr && root->Left == nullptr)
+				{
+					if (parent->Left == root)
+					{
+						parent->Left = nullptr;
+					}
+					else
+					{
+						parent->Right = nullptr;
 					}
 				}
 				else if (root->Right == nullptr)
 				{
-					assert(root->Left != nullptr);
+					if (parent->Left == root)
+					{
+						parent->Left = root->Left;
+					}
+					else
+					{
+						parent->Right = root->Left;
+					}
 
-					std::shared_ptr<TreeNode<T>> maxNode = getMaxNode(root->Left);
-					root->Data = std::move(maxNode->Data);
+					root->Left->Parent = parent;
+				}
+				else if (root->Left == nullptr)
+				{
+					if (parent->Left == root)
+					{
+						parent->Left = root->Right;
+					}
+					else
+					{
+						parent->Right = root->Right;
+					}
 
-					std::shared_ptr<TreeNode<T>> maxNodeParent = maxNode->Parent.lock();
-					deleteChild(maxNodeParent, maxNode);
+					root->Right->Parent = parent;
 				}
 				else
 				{
-					assert(root->Right != nullptr);
+					std::shared_ptr<TreeNode<T>> maxNode = getMaxNode(root->Left);
+					root->Data.swap(maxNode->Data);
 
-					std::shared_ptr<TreeNode<T>> minNode = getMinNode(root->Right);
-					root->Data = std::move(minNode->Data);
-
-					std::shared_ptr<TreeNode<T>> minNodeParent = minNode->Parent.lock();
-					deleteChild(minNodeParent, minNode);
+					deletion(maxNode, data);
 				}
 
 				return true;
@@ -200,7 +246,7 @@ namespace assignment4
 		return max;
 	}
 
-	template<typename T>
+	/*template<typename T>
 	std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getMinNode(std::shared_ptr<TreeNode<T>> root)
 	{
 		std::shared_ptr<TreeNode<T>> min = root;
@@ -211,9 +257,9 @@ namespace assignment4
 		}
 
 		return min;
-	}
+	}*/
 
-	template<typename T>
+	/*template<typename T>
 	void BinarySearchTree<T>::deleteChild(std::shared_ptr<TreeNode<T>>& node, std::shared_ptr<TreeNode<T>>& child)
 	{
 		assert(child->Left == nullptr);
@@ -231,7 +277,7 @@ namespace assignment4
 		}
 
 		child->Parent.reset();
-	}
+	}*/
 
 	template<typename T>
 	void BinarySearchTree<T>::traverseInOrder(std::vector<T>& out, const std::shared_ptr<TreeNode<T>> startNode)
@@ -241,8 +287,16 @@ namespace assignment4
 			return;
 		}
 
-		traverseInOrder(out, startNode->Left);
+		if (startNode->Left != nullptr)
+		{
+			traverseInOrder(out, startNode->Left);
+		}
+
 		out.emplace_back(*startNode->Data);
-		traverseInOrder(out, startNode->Right);
+
+		if (startNode->Right != nullptr)
+		{
+			traverseInOrder(out, startNode->Right);
+		}
 	}
 }
