@@ -140,10 +140,12 @@ namespace assignment4
 					}
 					else if (startNode->Right == nullptr)
 					{
+						startNode->Left->Parent.reset();
 						startNode = startNode->Left;
 					}
 					else if (startNode->Left == nullptr)
 					{
+						startNode->Right->Parent.reset();
 						startNode = startNode->Right;
 					}
 					else
