@@ -4,8 +4,6 @@
 
 namespace assignment4
 {
-	using namespace std;
-
 	template<typename T>
 	class TreeNode final
 	{
@@ -21,7 +19,7 @@ namespace assignment4
 
 	template<typename T>
 	TreeNode<T>::TreeNode(std::unique_ptr<T> data) :
-		Data(move(data)),
+		Data(std::move(data)),
 		Left(),
 		Right(),
 		Parent()
@@ -30,7 +28,7 @@ namespace assignment4
 
 	template<typename T>
 	TreeNode<T>::TreeNode(std::shared_ptr<TreeNode<T>> parent, std::unique_ptr<T> data) :
-		Data(move(data)),
+		Data(std::move(data)),
 		Left(),
 		Right(),
 		Parent(parent)

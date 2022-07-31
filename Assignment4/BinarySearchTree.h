@@ -33,13 +33,10 @@ namespace assignment4
 		static std::vector<T> TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode);
 
 	private:
-		bool deletion(std::shared_ptr<TreeNode<T>> root, const T& data);
-		std::shared_ptr<TreeNode<T>> getMaxNode(std::shared_ptr<TreeNode<T>> root);
-		/*std::shared_ptr<TreeNode<T>> getMinNode(std::shared_ptr<TreeNode<T>> root);*/
+		static bool deleteRecursive(std::shared_ptr<TreeNode<T>>& startNode, const T& data);
+		static std::shared_ptr<TreeNode<T>> getMaxNode(std::shared_ptr<TreeNode<T>> root);
 
-		/*void deleteChild(std::shared_ptr<TreeNode<T>>& node, std::shared_ptr<TreeNode<T>>& child);*/
-
-		static void traverseInOrder(std::vector<T>& out, const std::shared_ptr<TreeNode<T>> startNode);
+		static void traverseInOrderRecursive(std::vector<T>& out, const std::shared_ptr<TreeNode<T>> startNode);
 
 		std::shared_ptr<TreeNode<T>> mRoot;
 	};
@@ -121,12 +118,13 @@ namespace assignment4
 	template<typename T>
 	bool BinarySearchTree<T>::Delete(const T& data)
 	{
-		return true;
+		return deleteRecursive(mRoot, data);
 	}
 
 	template<typename T>
-	bool BinarySearchTree<T>::deletion(std::shared_ptr<TreeNode<T>> root, const T& data)
+	bool BinarySearchTree<T>::deleteRecursive(std::shared_ptr<TreeNode<T>>& startNode, const T& data)
 	{
+		std::shared_ptr<TreeNode<T>> root = startNode;
 		while (root != nullptr)
 		{
 			if (*(root->Data) == data)
@@ -134,26 +132,26 @@ namespace assignment4
 				std::shared_ptr<TreeNode<T>> parent = root->Parent.lock();
 				if (parent == nullptr)
 				{
-					assert(root == mRoot);
+					assert(root == startNode);
 
-					if (root->Right == nullptr && root->Left == nullptr)
+					if (startNode->Right == nullptr && startNode->Left == nullptr)
 					{
-						mRoot = nullptr;
+						startNode = nullptr;
 					}
-					else if (root->Right == nullptr)
+					else if (startNode->Right == nullptr)
 					{
-						mRoot = root->Left;
+						startNode = startNode->Left;
 					}
-					else if (root->Left == nullptr)
+					else if (startNode->Left == nullptr)
 					{
-						mRoot = root->Right;
+						startNode = startNode->Right;
 					}
 					else
 					{
-						std::shared_ptr<TreeNode<T>> maxNode = getMaxNode(root->Left);
-						root->Data.swap(maxNode->Data);
+						std::shared_ptr<TreeNode<T>> maxNode = getMaxNode(startNode->Left);
+						startNode->Data.swap(maxNode->Data);
 
-						deletion(maxNode, data);
+						deleteRecursive(maxNode, data);
 					}
 
 					return true;
@@ -201,7 +199,7 @@ namespace assignment4
 					std::shared_ptr<TreeNode<T>> maxNode = getMaxNode(root->Left);
 					root->Data.swap(maxNode->Data);
 
-					deletion(maxNode, data);
+					deleteRecursive(maxNode, data);
 				}
 
 				return true;
@@ -229,7 +227,7 @@ namespace assignment4
 		std::vector<T> v;
 		v.reserve(32);
 
-		traverseInOrder(v, startNode);
+		traverseInOrderRecursive(v, startNode);
 		return v;
 	}
 
@@ -246,41 +244,8 @@ namespace assignment4
 		return max;
 	}
 
-	/*template<typename T>
-	std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getMinNode(std::shared_ptr<TreeNode<T>> root)
-	{
-		std::shared_ptr<TreeNode<T>> min = root;
-		while (root != nullptr)
-		{
-			min = root;
-			root = root->Left;
-		}
-
-		return min;
-	}*/
-
-	/*template<typename T>
-	void BinarySearchTree<T>::deleteChild(std::shared_ptr<TreeNode<T>>& node, std::shared_ptr<TreeNode<T>>& child)
-	{
-		assert(child->Left == nullptr);
-		assert(child->Right == nullptr);
-
-		if (node->Left == child)
-		{
-			node->Left = nullptr;
-		}
-		else
-		{
-			assert(node->Right == child);
-
-			node->Right = nullptr;
-		}
-
-		child->Parent.reset();
-	}*/
-
 	template<typename T>
-	void BinarySearchTree<T>::traverseInOrder(std::vector<T>& out, const std::shared_ptr<TreeNode<T>> startNode)
+	void BinarySearchTree<T>::traverseInOrderRecursive(std::vector<T>& out, const std::shared_ptr<TreeNode<T>> startNode)
 	{
 		if (startNode == nullptr)
 		{
@@ -289,14 +254,14 @@ namespace assignment4
 
 		if (startNode->Left != nullptr)
 		{
-			traverseInOrder(out, startNode->Left);
+			traverseInOrderRecursive(out, startNode->Left);
 		}
 
 		out.emplace_back(*startNode->Data);
 
 		if (startNode->Right != nullptr)
 		{
-			traverseInOrder(out, startNode->Right);
+			traverseInOrderRecursive(out, startNode->Right);
 		}
 	}
 }
