@@ -26,7 +26,7 @@ namespace assignment4
 		~BinarySearchTree() = default;
 
 		void Insert(std::unique_ptr<T> data);
-		bool Search(const T& data);
+		bool Search(const T& data) const;
 		bool Delete(const T& data);
 		const std::weak_ptr<TreeNode<T>> GetRootNode() const;
 
@@ -34,7 +34,7 @@ namespace assignment4
 
 	private:
 		static bool deleteRecursive(std::shared_ptr<TreeNode<T>>& startNode, const T& data);
-		static std::shared_ptr<TreeNode<T>> getMaxNode(std::shared_ptr<TreeNode<T>> root);
+		static std::shared_ptr<TreeNode<T>> getMaxNode(const std::shared_ptr<TreeNode<T>> startNode);
 
 		static void traverseInOrderRecursive(std::vector<T>& out, const std::shared_ptr<TreeNode<T>> startNode);
 
@@ -89,7 +89,7 @@ namespace assignment4
 	}
 
 	template<typename T>
-	bool BinarySearchTree<T>::Search(const T& data)
+	bool BinarySearchTree<T>::Search(const T& data) const
 	{
 		std::shared_ptr<TreeNode<T>> root = mRoot;
 		while (root != nullptr)
@@ -234,13 +234,14 @@ namespace assignment4
 	}
 
 	template<typename T>
-	std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getMaxNode(std::shared_ptr<TreeNode<T>> root)
+	std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getMaxNode(const std::shared_ptr<TreeNode<T>> startNode)
 	{
-		std::shared_ptr<TreeNode<T>> max = root;
-		while (root != nullptr)
+		std::shared_ptr<TreeNode<T>> node = startNode;
+		std::shared_ptr<TreeNode<T>> max = node;
+		while (node != nullptr)
 		{
-			max = root;
-			root = root->Right;
+			max = node;
+			node = node->Right;
 		}
 
 		return max;
